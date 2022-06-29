@@ -52,7 +52,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId
+  * URL: /me
   * Body: none
 
 * Successful Response
@@ -79,7 +79,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /login or you can do /users/login
+  * URL: /login
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -146,7 +146,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /sign-up or you can do users/sign-up
+  * URL: /sign-up
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -270,7 +270,7 @@ Returns all the songs created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/songs
+  * URL: /me/songs
   * Body: none
 
 * Successful Response
@@ -358,7 +358,7 @@ Creates and returns a new song.
 * Require proper authorization: Album must belong to the current user
 * Request
   * Method: POST
-  * URL: /albums/:albumId/songs
+  * URL: /albums/:albumId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -570,7 +570,7 @@ Returns all the Albums created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/albums
+  * URL: /me/albums
   * Body: none
 
 * Successful Response
@@ -716,7 +716,7 @@ Updates and returns an existing album.
 * Require proper authorization: Album must belong to the current user
 * Request
   * Method: PUT
-  * URL: /albums/:album
+  * URL: /albums/:albumId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1262,7 +1262,7 @@ Add a song to a playlist specified by the playlist's id.
 * Require proper authorization: Playlist must belong to the current user
 * Request
   * Method: POST
-  * URL: /playlists/:playlistId/songs
+  * URL: /playlists/:playlistId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1476,7 +1476,7 @@ Returns all the playlists created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/playlists
+  * URL: /me/playlists
   * Body: none
 
 * Successful Response
