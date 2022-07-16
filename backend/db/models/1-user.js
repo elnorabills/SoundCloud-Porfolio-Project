@@ -55,11 +55,38 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static associate(models) {
-      // define association here
+      User.hasMany(models.Album, { foreignKey: "userId" });
+      User.hasMany(models.Comment, { foreignKey: "userId" });
+      User.hasMany(models.Song, { foreignKey: "userId" });
+      User.hasMany(models.Playlist, { foreignKey: "userId" });
     }
   }
   User.init(
     {
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isAlpha: {
+            //ensures there are only letters, no numbers
+            args: true,
+            msg: "Characters must be all letters.",
+          },
+          len: [1, 60],
+        },
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isAlpha: {
+            //ensures there are only letters, no numbers
+            args: true,
+            msg: "Characters must be all letters.",
+          },
+          len: [1, 60],
+        },
+      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -86,6 +113,9 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60],
         },
       },
+      previewImg: {
+        type: DataTypes.STRING
+      }
     },
     {
       sequelize,
@@ -98,13 +128,15 @@ module.exports = (sequelize, DataTypes) => {
       scopes: {
         currentUser: {
           attributes: {
-            exclude: ["hashedPassword"]
-          }
+            exclude: ["hashedPassword", "createdAt", "updatedAt"],
+          },
         },
         loginUser: {
-          attributes: {}
-        }
-      }
+          attributes: {
+            include: ["firstName", "lastName", "username", "email"]
+          },
+        },
+      },
     }
   );
   return User;
