@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     // This method will return an object with only the User instance information that is
     // safe to save in a JWT (id, username, email)
     toSafeObject() {
-      const { id, username, email } = this; // context will be the User instance
-      return { id, username, email };
+      const { id, firstName, lastName, username, email } = this; // context will be the User instance
+      return { id, firstName, lastName, email };
     }
     // This method accepts a password string and will return true if there is a match with the
     // User instance's hashedPassword. If there is no match it will return false
@@ -44,9 +44,11 @@ module.exports = (sequelize, DataTypes) => {
     // This method accepts an object with a username, email, and password key. It will hash the password
     // using the bcryptjs package's hashsync method. It will then create a User with the username, email,
     // and hashedPassword. Lastly, it will return the created user using the currentUser scope.
-    static async signup({ username, email, password }) {
+    static async signup({ firstName, lastName, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
+        firstName,
+        lastName,
         username,
         email,
         hashedPassword,
