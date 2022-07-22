@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { requireAuth } = require("../utils/auth");
 
-const { Album, User, Song, sequelize } = require("../db/models");
+const { Album, User, Song } = require("../db/models");
 
 // Get all Albums
 router.get("/", async (req, res) => {
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
             "description",
             "createdAt",
             "updatedAt",
-            [sequelize.col("imageUrl"), "previewImage"]
+            "previewImage"
         ]
     })
     res.json({ allAlbums });

@@ -12,6 +12,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Song.belongsTo(models.Album, { foreignKey: "albumId" });
       Song.hasMany(models.Comment, { foreignKey: "songId" });
+      Song.belongsToMany(models.Playlist, {
+        through: "PlaylistSong",
+        otherKey: "playlistId",
+        foreignKey: "songId"
+      });
+      Song.belongsTo(models.User, {
+        foreignKey: "userId",
+        as: "Artist"
+      })
     }
   }
   Song.init(
@@ -31,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.STRING
       },
-      imageUrl: {
+      previewImage: {
         type: DataTypes.STRING
       },
       url: {

@@ -9,12 +9,12 @@ module.exports = {
          {
            name: "Hot Garbage",
            userId: 1,
-           imageUrl: "imageUrl",
+           previewImage: "imageUrl",
          },
          {
            name: "Sweaty Foot",
            userId: 2,
-           imageUrl: "imageUrl",
+           previewImage: "imageUrl",
          },
        ],
        {}

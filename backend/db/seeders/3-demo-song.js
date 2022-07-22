@@ -12,7 +12,7 @@ module.exports = {
            userId: 1,
            albumId: 1,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Tidal Wave",
@@ -20,7 +20,7 @@ module.exports = {
            userId: 2,
            albumId: 2,
            url: "jiwijwo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Heaven",
@@ -28,7 +28,7 @@ module.exports = {
            userId: 3,
            albumId: 3,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Boy",
@@ -36,7 +36,7 @@ module.exports = {
            userId: 4,
            albumId: 4,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Make Me Go",
@@ -44,7 +44,7 @@ module.exports = {
            userId: 4,
            albumId: 4,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Better",
@@ -52,7 +52,7 @@ module.exports = {
            userId: 4,
            albumId: 5,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Somebody",
@@ -60,7 +60,7 @@ module.exports = {
            userId: 4,
            albumId: 5,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Don't Leave",
@@ -68,7 +68,7 @@ module.exports = {
            userId: 5,
            albumId: 5,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Red Light",
@@ -76,7 +76,7 @@ module.exports = {
            userId: 4,
            albumId: 4,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Hunter",
@@ -84,7 +84,7 @@ module.exports = {
            userId: 4,
            albumId: 4,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Mistakes",
@@ -92,7 +92,7 @@ module.exports = {
            userId: 4,
            albumId: 4,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "My Youth",
@@ -100,7 +100,7 @@ module.exports = {
            userId: 4,
            albumId: 4,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Grapevine",
@@ -108,7 +108,7 @@ module.exports = {
            userId: 4,
            albumId: 5,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
          {
            title: "Drunk",
@@ -116,7 +116,7 @@ module.exports = {
            userId: 4,
            albumId: 5,
            url: "owiejfowijefo",
-           imageUrl: "image url",
+           previewImage: "image url",
          },
        ],
        {}

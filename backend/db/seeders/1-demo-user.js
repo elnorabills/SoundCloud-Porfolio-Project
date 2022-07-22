@@ -12,7 +12,7 @@ module.exports = {
           email: "demo@user.io",
           username: "Demo-lition",
           hashedPassword: bcrypt.hashSync("password"),
-          previewImg: "previewImg url",
+          previewImage: "previewImg url",
         },
         {
           firstName: "Bradly",
@@ -20,7 +20,7 @@ module.exports = {
           email: "user1@user.io",
           username: "FakeUser1",
           hashedPassword: bcrypt.hashSync("password2"),
-          previewImg: "previewImg url",
+          previewImage: "previewImg url",
         },
         {
           firstName: "Christian",
@@ -28,7 +28,7 @@ module.exports = {
           email: "user2@user.io",
           username: "FakeUser2",
           hashedPassword: bcrypt.hashSync("password3"),
-          previewImg: "previewImg url",
+          previewImage: "previewImg url",
         },
         {
           firstName: "Dwayne",
@@ -36,7 +36,7 @@ module.exports = {
           email: "therock@user.io",
           username: "RockMan3",
           hashedPassword: bcrypt.hashSync("password4"),
-          previewImg: "previewImg url",
+          previewImage: "previewImg url",
         },
         {
           firstName: "Ewan",
@@ -44,7 +44,7 @@ module.exports = {
           email: "obi-wan@user.io",
           username: "Obi-Wan",
           hashedPassword: bcrypt.hashSync("password5"),
-          previewImg: "previewImg url",
+          previewImage: "previewImg url",
         },
         {
           firstName: "Frank",
@@ -52,7 +52,7 @@ module.exports = {
           email: "singer@user.io",
           username: "NewYorkNewYork",
           hashedPassword: bcrypt.hashSync("password6"),
-          previewImg: "previewImg url",
+          previewImage: "previewImg url",
         },
       ],
       {}
