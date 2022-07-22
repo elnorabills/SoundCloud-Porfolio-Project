@@ -36,17 +36,18 @@ router.post(
       return next(err);
     }
 
-    await setTokenCookie(res, user);
+    const token = await setTokenCookie(res, user);
 
     return res.json({
-      user
+      ...user.toSafeObject(),
+      token
     });
   }
 );
 
 // Log out
 router.delete(
-  '/',
+  '/logout',
   (_req, res) => {
     res.clearCookie('token');
     return res.json({ message: 'success' });
