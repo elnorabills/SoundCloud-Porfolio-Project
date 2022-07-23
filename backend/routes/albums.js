@@ -6,7 +6,49 @@ const { requireAuth } = require("../utils/auth");
 const { Album, User, Song } = require("../db/models");
 const { songValidation } = require("../utils/validation");
 
-//Get
+// Get details of an Album from an id
+router.get("/:albumId", async (req, res) => {
+    const { albumId } = req.params;
+
+    const albumDetails = await Album.findByPk(albumId, {
+      attributes: [
+        "id",
+        "userId",
+        "title",
+        "description",
+        "createdAt",
+        "updatedAt",
+        "previewImage",
+      ],
+      include: [
+        {
+          model: User,
+          as: "Artist",
+          attributes: ["id", "username", "previewImage"],
+        },
+        {
+          model: Song,
+          attributes: [
+            "id",
+            "userId",
+            "albumId",
+            "title",
+            "description",
+            "url",
+            "createdAt",
+            "updatedAt",
+            "previewImage",
+          ],
+        },
+      ],
+    });
+    if (!albumDetails) {
+        const error = new Error("Album couldn't be found");
+        error.status = 404;
+        throw error;
+    }
+    res.json(albumDetails);
+})
 
 // Get all Albums
 router.get("/", async (req, res) => {
