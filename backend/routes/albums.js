@@ -6,6 +6,8 @@ const { requireAuth } = require("../utils/auth");
 const { Album, User, Song } = require("../db/models");
 const { songValidation } = require("../utils/validation");
 
+//Get
+
 // Get all Albums
 router.get("/", async (req, res) => {
     const allAlbums = await Album.findAll({
