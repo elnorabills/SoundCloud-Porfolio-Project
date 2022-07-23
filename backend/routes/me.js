@@ -4,6 +4,24 @@ const router = express.Router();
 const { setTokenCookie, requireAuth, restoreUser } = require("../utils/auth");
 const { Album, Song, Playlist } = require('../db/models');
 
+// Get all Albums created by the Current User
+router.get("/albums", requireAuth, async (req, res) => {
+    const { user } = req;
+    const allAlbums = await Album.findAll({
+        where: { userId: user.id },
+        attributes: [
+            "id",
+            "userId",
+            "title",
+            "description",
+            "createdAt",
+            "updatedAt",
+            "previewImage"
+        ]
+    })
+    res.json({ allAlbums });
+})
+
 // Get all songs created by Current User
 router.get("/songs", requireAuth, async (req, res) => {
     const { user } = req;
