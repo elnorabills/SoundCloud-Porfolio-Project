@@ -25,7 +25,14 @@ const songValidation = [
   handleValidationErrors
 ];
 
+// album.js
+const albumValidation = [
+  check("title").exists({ checkFalsy: true }).withMessage("Album title is required"),
+  handleValidationErrors,
+];
+
 module.exports = {
   handleValidationErrors,
   songValidation,
+  albumValidation,
 };

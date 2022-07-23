@@ -4,7 +4,7 @@ const router = express.Router();
 const { requireAuth } = require("../utils/auth");
 
 const { Album, User, Song } = require("../db/models");
-const { songValidation } = require("../utils/validation");
+const { songValidation, albumValidation } = require("../utils/validation");
 
 // Get details of an Album from an id
 router.get("/:albumId", async (req, res) => {
@@ -96,6 +96,21 @@ router.post("/:albumId", requireAuth, songValidation, async (req, res) => {
         error.status = 404;
         throw error;
     }
+})
+
+// Create an Album
+router.post("/", requireAuth, albumValidation, async (req, res) => {
+    const { user } = req;
+    const { title, description, previewImage } = req.body;
+
+    const newAlbum = await Album.create({
+        userId: user.id,
+        title,
+        description,
+        previewImage
+    })
+    res.status(201);
+    res.json(newAlbum);
 })
 
 module.exports = router;
