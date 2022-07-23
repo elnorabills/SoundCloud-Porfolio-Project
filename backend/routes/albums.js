@@ -113,4 +113,54 @@ router.post("/", requireAuth, albumValidation, async (req, res) => {
     res.json(newAlbum);
 })
 
+// Edit an Album
+router.put("/:albumId", requireAuth, albumValidation, async (req, res) => {
+    const { albumId } = req.params;
+    const { user } = req;
+    const { title, description, previewImage } = req.body;
+
+    const editedAlbum = await Album.findByPk(albumId);
+
+    if (editedAlbum) {
+      if (editedAlbum.userId === user.id) {
+        await editedAlbum.update({
+          title,
+          description,
+          previewImage,
+        });
+        res.json(editedAlbum);
+      } else {
+        const error = new Error("Validation Error");
+        error.status = 400;
+        throw error;
+      }
+    } else {
+      const error = new Error("Album couldn't be found");
+      error.status = 404;
+      throw error;
+    }
+})
+
+// Delete an Album
+router.delete("/:albumId", requireAuth, async (req, res) => {
+    const { albumId } = req.params;
+    const { user } = req;
+
+    const deletedAlbum = await Album.findByPk(albumId);
+
+     if (deletedAlbum) {
+       if (deletedAlbum.userId === user.id) {
+         await deletedAlbum.destroy()
+         res.json({
+             message: "Successfully deleted",
+             statusCode: 200
+         });
+       } 
+     } else {
+       const error = new Error("Album couldn't be found");
+       error.status = 404;
+       throw error;
+     }
+})
+
 module.exports = router;
