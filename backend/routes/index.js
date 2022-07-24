@@ -12,7 +12,7 @@ const songRouter = require("./songs");
 router.use("/api", apiRouter);
 router.use("/albums", albumRouter);
 // router.use("/artists", artistRouter);
-// router.use("/comments", commentRouter);
+router.use("/comments", commentRouter);
 router.use("/me", meRouter);
 //router.use("/playlists", playlistRouter);
 router.use("/songs", songRouter);
