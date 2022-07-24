@@ -6,6 +6,34 @@ const { songValidation } = require("../utils/validation");
 
 const { Song, Album, Comment, User } = require("../db/models");
 
+// Get all Comments by a Song's id
+router.get("/:songId/comments", async (req, res) => {
+  const { songId } = req.params;
+  const song = await Song.findByPk(songId, {
+    include: [
+      {
+        model: Comment,
+        include: [
+          {
+            model: User,
+            attributes: [
+              "id",
+              "username"
+            ]
+          }
+        ]
+      }
+    ]
+  })
+  if (song) {
+    res.json({ Comments: song.Comments });
+  } else {
+    const error = new Error("Song couldn't be found");
+    error.status = 404;
+    throw error;
+  }
+})
+
 // Get details of song by songId
 router.get("/:songId", async (req, res) => {
     const { songId } = req.params;
