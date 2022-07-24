@@ -18,16 +18,22 @@ const handleValidationErrors = (req, _res, next) => {
   next();
 };
 
-// song.js and album.js
+// songs.js and albums.js
 const songValidation = [
   check("title").exists({ checkFalsy: true }).withMessage("Song title is required"),
   check("url").exists({ checkFalsy: true }).withMessage("Audio is required"),
   handleValidationErrors
 ];
 
-// album.js
+// albums.js
 const albumValidation = [
   check("title").exists({ checkFalsy: true }).withMessage("Album title is required"),
+  handleValidationErrors,
+];
+
+// songs.js and comments.js
+const commentValidation = [
+  check("body").exists({ checkFalsy: true }).withMessage("Comment body text is required"),
   handleValidationErrors,
 ];
 
@@ -35,4 +41,5 @@ module.exports = {
   handleValidationErrors,
   songValidation,
   albumValidation,
+  commentValidation,
 };

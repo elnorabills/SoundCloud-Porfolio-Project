@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { requireAuth } = require("../utils/auth");
-const { songValidation } = require("../utils/validation");
+const { songValidation, commentValidation } = require("../utils/validation");
 
 const { Song, Album, Comment, User } = require("../db/models");
 
@@ -93,6 +93,27 @@ router.get("/", async (req, res) => {
         ]
     })
     res.json({ allSongs });
+})
+
+// Create a Comment for a Song based on the Song's id
+router.post("/:songId/comments", requireAuth, commentValidation, async (req, res) => {
+  const { songId } = req.params;
+  const { user } = req;
+  const { body } = req.body;
+  const song = await Song.findByPk(songId);
+
+  if (song) {
+    const newComment = await Comment.create({
+      userId: user.id,
+      songId,
+      body
+    });
+    res.json(newComment);
+  } else {
+    const error = new Error("Song couldn't be found");
+    error.status = 404;
+    throw error;
+  }
 })
 
 // Edit a song
