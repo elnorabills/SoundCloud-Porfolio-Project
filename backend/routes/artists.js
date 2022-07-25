@@ -35,7 +35,7 @@ router.get("/:artistId/playlists", async (req, res) => {
   const artist = await User.findByPk(artistId);
 
   if (artist) {
-    const artistPlaylists = await Album.findAll({
+    const artistPlaylists = await Playlist.findAll({
       where: { userId: artistId },
       attributes: [
         "id",
