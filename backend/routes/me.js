@@ -22,6 +22,23 @@ router.get("/albums", requireAuth, async (req, res) => {
     res.json({ allAlbums });
 })
 
+// Get all Playlists created by the Current User
+router.get("/playlists", requireAuth, async (req, res) => {
+  const { user } = req;
+  const allPlaylists = await Playlist.findAll({
+    where: { userId: user.id },
+    attributes: [
+      "id",
+      "userId",
+      "name",
+      "createdAt",
+      "updatedAt",
+      "previewImage",
+    ],
+  });
+  res.json({ allPlaylists });
+});
+
 // Get all songs created by Current User
 router.get("/songs", requireAuth, async (req, res) => {
     const { user } = req;
