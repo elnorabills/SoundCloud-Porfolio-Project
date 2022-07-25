@@ -14,7 +14,7 @@ router.use("/albums", albumRouter);
 router.use("/artists", artistRouter);
 router.use("/comments", commentRouter);
 router.use("/me", meRouter);
-//router.use("/playlists", playlistRouter);
+router.use("/playlists", playlistRouter);
 router.use("/songs", songRouter);
 
 

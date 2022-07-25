@@ -37,9 +37,16 @@ const commentValidation = [
   handleValidationErrors,
 ];
 
+// playlists.js
+const playlistValidation = [
+  check("name").exists({ checkFalsy: true }).withMessage("Playlist name is required"),
+  handleValidationErrors,
+];
+
 module.exports = {
   handleValidationErrors,
   songValidation,
   albumValidation,
   commentValidation,
+  playlistValidation,
 };
