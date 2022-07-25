@@ -35,6 +35,12 @@ module.exports = {
           userId: 5,
           previewImage: "image url",
         },
+        {
+          title: "Good Morning",
+          description: "Very happy morning music",
+          userId: 5,
+          previewImage: "image url",
+        },
       ],
       {}
     );
