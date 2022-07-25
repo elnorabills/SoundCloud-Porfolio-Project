@@ -19,8 +19,8 @@ router.put("/:commentId", requireAuth, commentValidation, async (req, res) => {
         });
         res.json(editedComment);
       } else {
-        const error = new Error("Validation Error");
-        error.status = 400;
+        const error = new Error("Forbidden");
+        error.status = 403;
         throw error;
       }
     } else {
@@ -44,8 +44,8 @@ router.delete("/:commentId", requireAuth, async (req, res) => {
           statusCode: 200,
         });
       } else {
-        const error = new Error("Validation Error");
-        error.status = 400;
+        const error = new Error("Forbidden");
+        error.status = 403;
         throw error;
       }
     } else {

@@ -66,8 +66,8 @@ router.post("/:playlistId", requireAuth, async (req, res) => {
         });
         res.json(newPlaylistSong);
       } else {
-        const error = new Error("Validation Error");
-        error.status = 400;
+        const error = new Error("Forbidden");
+        error.status = 403;
         throw error;
       }
     } else {
@@ -115,8 +115,8 @@ router.put(
         });
         res.json(editedPlaylist);
       } else {
-        const error = new Error("Validation Error");
-        error.status = 400;
+        const error = new Error("Forbidden");
+        error.status = 403;
         throw error;
       }
     } else {
@@ -141,8 +141,8 @@ router.delete("/:playlistId", requireAuth, async (req, res) => {
         statusCode: 200,
       });
     } else {
-      const error = new Error("Validation Error");
-      error.status = 400;
+      const error = new Error("Forbidden");
+      error.status = 403;
       throw error;
     }
   } else {

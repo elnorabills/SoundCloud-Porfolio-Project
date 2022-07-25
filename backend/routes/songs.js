@@ -134,12 +134,12 @@ router.put("/:songId", requireAuth, songValidation, async (req, res) => {
       });
       res.json(editedSong);
     } else {
-      const error = new Error("Validation Error");
-      error.status = 400;
+      const error = new Error("Forbidden");
+      error.status = 403;
       throw error;
     }
   } else {
-    const error = new Error("Album couldn't be found");
+    const error = new Error("Song couldn't be found");
     error.status = 404;
     throw error;
   }
@@ -160,8 +160,8 @@ router.delete("/:songId", requireAuth, async (req, res) => {
         statusCode: 200,
       });
     } else {
-      const error = new Error("Validation Error");
-      error.status = 400;
+      const error = new Error("Forbidden");
+      error.status = 403;
       throw error;
     }
   } else {
