@@ -16,6 +16,26 @@ module.exports = {
            userId: 2,
            previewImage: "imageUrl",
          },
+         {
+           name: "Beefy Breath",
+           userId: 2,
+           previewImage: "imageUrl",
+         },
+         {
+           name: "Taco Bell",
+           userId: 3,
+           previewImage: "imageUrl",
+         },
+         {
+           name: "For when I have gas",
+           userId: 4,
+           previewImage: "imageUrl",
+         },
+         {
+           name: "Workout",
+           userId: 5,
+           previewImage: "imageUrl",
+         },
        ],
        {}
      );
