@@ -32,7 +32,7 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false,
       },
-      previewImage: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       createdAt: {

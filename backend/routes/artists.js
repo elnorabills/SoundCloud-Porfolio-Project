@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { User, Song, Album, Playlist } = require("../db/models");
+const { User, Song, Album, Playlist, sequelize } = require("../db/models");
 
 // Get all Albums of an Artist from an id
 router.get("/:artistId/albums", async (req, res) => {
@@ -18,7 +18,7 @@ router.get("/:artistId/albums", async (req, res) => {
         "description",
         "createdAt",
         "updatedAt",
-        "previewImage",
+        [sequelize.col("imageUrl"), "previewImage"],
       ],
     });
     res.json({ artistAlbums });
@@ -43,7 +43,7 @@ router.get("/:artistId/playlists", async (req, res) => {
         "name",
         "createdAt",
         "updatedAt",
-        "previewImage",
+        [sequelize.col("imageUrl"), "previewImage"],
       ],
     });
     res.json({ artistPlaylists });
@@ -71,7 +71,7 @@ router.get("/:artistId/songs", async (req, res) => {
             "url",
             "createdAt",
             "updatedAt",
-            "previewImage",
+            [sequelize.col("imageUrl"), "previewImage"],
           ],
         });
         res.json({ artistSongs });
@@ -86,11 +86,11 @@ router.get("/:artistId/songs", async (req, res) => {
 router.get("/:artistId", async (req, res) => {
     const { artistId } = req.params;
     const artist = await User.findByPk(artistId, {
-        attributes: [
-            "id",
-            "username",
-            "previewImage"
-        ]
+      attributes: [
+        "id",
+        "username",
+        [sequelize.col("imageUrl"), "previewImage"],
+      ],
     });
     const totalSongs = await Song.count({ where: { userId: artistId }});
     const totalAlbums = await Album.count({ where: { userId: artistId }});

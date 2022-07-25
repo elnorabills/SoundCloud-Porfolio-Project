@@ -2,23 +2,23 @@ const express = require('express');
 const router = express.Router();
 
 const { setTokenCookie, requireAuth, restoreUser } = require("../utils/auth");
-const { Album, Song, Playlist } = require('../db/models');
+const { Album, Song, Playlist, sequelize } = require('../db/models');
 
 // Get all Albums created by the Current User
 router.get("/albums", requireAuth, async (req, res) => {
     const { user } = req;
     const allAlbums = await Album.findAll({
-        where: { userId: user.id },
-        attributes: [
-            "id",
-            "userId",
-            "title",
-            "description",
-            "createdAt",
-            "updatedAt",
-            "previewImage"
-        ]
-    })
+      where: { userId: user.id },
+      attributes: [
+        "id",
+        "userId",
+        "title",
+        "description",
+        "createdAt",
+        "updatedAt",
+        [sequelize.col("imageUrl"), "previewImage"],
+      ],
+    });
     res.json({ allAlbums });
 })
 
@@ -33,7 +33,7 @@ router.get("/playlists", requireAuth, async (req, res) => {
       "name",
       "createdAt",
       "updatedAt",
-      "previewImage",
+      [sequelize.col("imageUrl"), "previewImage"],
     ],
   });
   res.json({ allPlaylists });
@@ -43,19 +43,19 @@ router.get("/playlists", requireAuth, async (req, res) => {
 router.get("/songs", requireAuth, async (req, res) => {
     const { user } = req;
     const allCreatedSongs = await Song.findAll({
-        attributes: [
-            "id",
-            "userId",
-            "albumId",
-            "title",
-            "description",
-            "url",
-            "createdAt",
-            "updatedAt",
-            "previewImage"
-        ],
-        where: { userId: user.id }
-    })
+      where: { userId: user.id },
+      attributes: [
+        "id",
+        "userId",
+        "albumId",
+        "title",
+        "description",
+        "url",
+        "createdAt",
+        "updatedAt",
+        [sequelize.col("imageUrl"), "previewImage"],
+      ],
+    });
     res.json({ allCreatedSongs });
 })
 

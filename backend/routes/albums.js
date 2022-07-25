@@ -4,7 +4,7 @@ const router = express.Router();
 const { requireAuth } = require("../utils/auth");
 
 const { Album, User, Song } = require("../db/models");
-const { songValidation, albumValidation } = require("../utils/validation");
+const { songValidation, albumValidation, sequelize } = require("../utils/validation");
 
 // Get details of an Album from an id
 router.get("/:albumId", async (req, res) => {
@@ -18,13 +18,17 @@ router.get("/:albumId", async (req, res) => {
         "description",
         "createdAt",
         "updatedAt",
-        "previewImage",
+        [sequelize.col("Album.imageUrl"), "previewImage"],
       ],
       include: [
         {
           model: User,
           as: "Artist",
-          attributes: ["id", "username", "previewImage"],
+          attributes: [
+            "id",
+            "username",
+            [sequelize.col("imageUrl"), "previewImage"],
+          ],
         },
         {
           model: Song,
@@ -37,7 +41,7 @@ router.get("/:albumId", async (req, res) => {
             "url",
             "createdAt",
             "updatedAt",
-            "previewImage",
+            [sequelize.col("imageUrl"), "previewImage"],
           ],
         },
       ],
@@ -53,16 +57,16 @@ router.get("/:albumId", async (req, res) => {
 // Get all Albums
 router.get("/", async (req, res) => {
     const allAlbums = await Album.findAll({
-        attributes: [
-            "id",
-            "userId",
-            "title",
-            "description",
-            "createdAt",
-            "updatedAt",
-            "previewImage"
-        ]
-    })
+      attributes: [
+        "id",
+        "userId",
+        "title",
+        "description",
+        "createdAt",
+        "updatedAt",
+        [sequelize.col("imageUrl"), "previewImage"],
+      ],
+    });
     res.json({ allAlbums });
 })
 
@@ -82,8 +86,11 @@ router.post("/:albumId", requireAuth, songValidation, async (req, res) => {
                 title,
                 description,
                 url,
-                previewImage
+                imageUrl
             });
+            createdSong.dataValues.previewImage = imageUrl;
+            delete createdSong.dataValues.imageUrl;
+
             res.status(201);
             res.json(createdSong);
         } else {
@@ -101,14 +108,17 @@ router.post("/:albumId", requireAuth, songValidation, async (req, res) => {
 // Create an Album
 router.post("/", requireAuth, albumValidation, async (req, res) => {
     const { user } = req;
-    const { title, description, previewImage } = req.body;
+    const { title, description, imageUrl } = req.body;
 
     const newAlbum = await Album.create({
         userId: user.id,
         title,
         description,
-        previewImage
+        imageUrl
     })
+    newAlbum.dataValues.previewImage = imageUrl;
+    delete newAlbum.dataValues.imageUrl;
+
     res.status(201);
     res.json(newAlbum);
 })
@@ -117,7 +127,7 @@ router.post("/", requireAuth, albumValidation, async (req, res) => {
 router.put("/:albumId", requireAuth, albumValidation, async (req, res) => {
     const { albumId } = req.params;
     const { user } = req;
-    const { title, description, previewImage } = req.body;
+    const { title, description, imageUrl } = req.body;
 
     const editedAlbum = await Album.findByPk(albumId);
 
@@ -126,8 +136,11 @@ router.put("/:albumId", requireAuth, albumValidation, async (req, res) => {
         await editedAlbum.update({
           title,
           description,
-          previewImage,
+          imageUrl,
         });
+        editedAlbum.dataValues.previewImage = imageUrl;
+        delete editedAlbum.dataValues.imageUrl;
+
         res.json(editedAlbum);
       } else {
         const error = new Error("Forbidden");

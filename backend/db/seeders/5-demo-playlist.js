@@ -9,37 +9,37 @@ module.exports = {
          {
            name: "Hot Garbage",
            userId: 1,
-           previewImage: "imageUrl",
+           imageUrl: "imageUrl",
          },
          {
            name: "Sweaty Foot",
            userId: 2,
-           previewImage: "imageUrl",
+           imageUrl: "imageUrl",
          },
          {
            name: "Beefy Breath",
            userId: 2,
-           previewImage: "imageUrl",
+           imageUrl: "imageUrl",
          },
          {
            name: "Taco Bell",
            userId: 3,
-           previewImage: "imageUrl",
+           imageUrl: "imageUrl",
          },
          {
            name: "For when I have gas",
            userId: 4,
-           previewImage: "imageUrl",
+           imageUrl: "imageUrl",
          },
          {
            name: "Workout",
            userId: 5,
-           previewImage: "imageUrl",
+           imageUrl: "imageUrl",
          },
          {
            name: "For a good cry",
            userId: 6,
-           previewImage: "imageUrl",
+           imageUrl: "imageUrl",
          },
        ],
        {}

@@ -4,7 +4,7 @@ const router = express.Router();
 const { requireAuth } = require("../utils/auth");
 const { songValidation, commentValidation } = require("../utils/validation");
 
-const { Song, Album, Comment, User } = require("../db/models");
+const { Song, Album, Comment, User, sequelize } = require("../db/models");
 
 // Get all Comments by a Song's id
 router.get("/:songId/comments", async (req, res) => {
@@ -47,7 +47,7 @@ router.get("/:songId", async (req, res) => {
         "url",
         "createdAt",
         "updatedAt",
-        "previewImage"
+        [sequelize.col("Song.imageUrl"), "previewImage"],
       ],
       include: [
         {
@@ -56,7 +56,7 @@ router.get("/:songId", async (req, res) => {
           attributes: [
             "id",
             "username",
-            "previewImage"
+            [sequelize.col("Song.imageUrl"), "previewImage"],
           ],
         },
         {
@@ -64,7 +64,7 @@ router.get("/:songId", async (req, res) => {
           attributes: [
             "id",
             "title",
-            "previewImage"
+            [sequelize.col("Song.imageUrl"), "previewImage"],
           ],
         },
       ],
@@ -80,18 +80,18 @@ router.get("/:songId", async (req, res) => {
 // Get All Songs
 router.get("/", async (req, res) => {
     const allSongs = await Song.findAll({
-        attributes: [
-            "id",
-            "userId",
-            "albumId",
-            "title",
-            "description",
-            "url",
-            "createdAt",
-            "updatedAt",
-            "previewImage"
-        ]
-    })
+      attributes: [
+        "id",
+        "userId",
+        "albumId",
+        "title",
+        "description",
+        "url",
+        "createdAt",
+        "updatedAt",
+        [sequelize.col("Song.imageUrl"), "previewImage"],
+      ],
+    });
     res.json({ allSongs });
 })
 
@@ -120,7 +120,7 @@ router.post("/:songId/comments", requireAuth, commentValidation, async (req, res
 router.put("/:songId", requireAuth, songValidation, async (req, res) => {
   const { songId } = req.params;
   const { user } = req;
-  const { title, description, url, previewImage } = req.body;
+  const { title, description, url, imageUrl } = req.body;
 
   const editedSong = await Song.findByPk(songId);
 
@@ -130,8 +130,11 @@ router.put("/:songId", requireAuth, songValidation, async (req, res) => {
         title,
         description,
         url,
-        previewImage,
+        imageUrl,
       });
+      editedSong.dataValues.previewImage = imageUrl;
+      delete editedSong.dataValues.imageUrl;
+
       res.json(editedSong);
     } else {
       const error = new Error("Forbidden");

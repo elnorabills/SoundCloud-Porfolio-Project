@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { Song, PlaylistSong, Playlist } = require("../db/models");
+const { Song, PlaylistSong, Playlist, sequelize } = require("../db/models");
 const { requireAuth } = require("../utils/auth");
 const { playlistValidation } = require("../utils/validation");
 
@@ -16,7 +16,7 @@ router.get("/:playlistId", async (req, res) => {
       "name",
       "createdAt",
       "updatedAt",
-      "previewImage",
+      [sequelize.col("imageUrl"), "previewImage"],
     ],
     include: [
       {
@@ -30,7 +30,7 @@ router.get("/:playlistId", async (req, res) => {
           "url",
           "createdAt",
           "updatedAt",
-          "previewImage",
+          [sequelize.col("imageUrl"), "previewImage"],
         ],
         through: { attributes: [] },
       },
@@ -85,13 +85,16 @@ router.post("/:playlistId", requireAuth, async (req, res) => {
 // Create a Playlist
 router.post("/", requireAuth, playlistValidation, async (req, res) => {
   const { user } = req;
-  const { name, previewImage } = req.body;
+  const { name, imageUrl } = req.body;
 
   const newPlaylist = await Playlist.create({
     userId: user.id,
     name,
-    previewImage,
+    imageUrl,
   });
+  newPlaylist.dataValues.previewImage = imageUrl;
+  delete newPlaylist.dataValues.imageUrl;
+
   res.status(201);
   res.json(newPlaylist);
 });
@@ -104,15 +107,18 @@ router.put(
   async (req, res) => {
     const { playlistId } = req.params;
     const { user } = req;
-    const { name, previewImage } = req.body;
+    const { name, imageUrl } = req.body;
     const editedPlaylist = await Playlist.findByPk(playlistId);
 
     if (editedPlaylist) {
       if (editedPlaylist.userId === user.id) {
         await editedPlaylist.update({
           name,
-          previewImage,
+          imageUrl,
         });
+        editedPlaylist.dataValues.previewImage = imageUrl;
+        delete editedPlaylist.dataValues.imageUrl;
+
         res.json(editedPlaylist);
       } else {
         const error = new Error("Forbidden");
