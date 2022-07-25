@@ -32,14 +32,14 @@ router.get("/:playlistId", async (req, res) => {
           "updatedAt",
           "previewImage",
         ],
-        through: { attributes: [] }
+        through: { attributes: [] },
       },
     ],
   });
   if (!playlistDetails) {
-      const error = new Error("Playlist couldn't be found");
-      error.status = 404;
-      throw error;
+    const error = new Error("Playlist couldn't be found");
+    error.status = 404;
+    throw error;
   }
   res.json(playlistDetails);
 });
@@ -94,6 +94,62 @@ router.post("/", requireAuth, playlistValidation, async (req, res) => {
   });
   res.status(201);
   res.json(newPlaylist);
+});
+
+// Edit a Playlist
+router.put(
+  "/:playlistId",
+  requireAuth,
+  playlistValidation,
+  async (req, res) => {
+    const { playlistId } = req.params;
+    const { user } = req;
+    const { name, previewImage } = req.body;
+    const editedPlaylist = await Playlist.findByPk(playlistId);
+
+    if (editedPlaylist) {
+      if (editedPlaylist.userId === user.id) {
+        await editedPlaylist.update({
+          name,
+          previewImage,
+        });
+        res.json(editedPlaylist);
+      } else {
+        const error = new Error("Validation Error");
+        error.status = 400;
+        throw error;
+      }
+    } else {
+      const error = new Error("Playlist couldn't be found");
+      error.status = 404;
+      throw error;
+    }
+  }
+);
+
+// Delete a Playlist
+router.delete("/:playlistId", requireAuth, async (req, res) => {
+  const { playlistId } = req.params;
+  const { user } = req;
+  const deletedPlaylist = await Playlist.findByPk(playlistId);
+
+  if (deletedPlaylist) {
+    if (deletedPlaylist.userId === user.id) {
+      await deletedPlaylist.destroy();
+      res.json({
+        message: "Successfully deleted",
+        statusCode: 200,
+      });
+    } else {
+      const error = new Error("Validation Error");
+      error.status = 400;
+      throw error;
+    }
+  } else {
+    const error = new Error("Playlist couldn't be found");
+    error.status = 404;
+    throw error;
+  }
 });
 
 module.exports = router;

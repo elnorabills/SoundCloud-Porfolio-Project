@@ -150,12 +150,16 @@ router.delete("/:albumId", requireAuth, async (req, res) => {
 
      if (deletedAlbum) {
        if (deletedAlbum.userId === user.id) {
-         await deletedAlbum.destroy()
+         await deletedAlbum.destroy();
          res.json({
-             message: "Successfully deleted",
-             statusCode: 200
+           message: "Successfully deleted",
+           statusCode: 200,
          });
-       } 
+       } else {
+         const error = new Error("Validation Error");
+         error.status = 400;
+         throw error;
+       }
      } else {
        const error = new Error("Album couldn't be found");
        error.status = 404;

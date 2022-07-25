@@ -40,9 +40,13 @@ router.delete("/:commentId", requireAuth, async (req, res) => {
       if (deletedComment.userId === user.id) {
         await deletedComment.destroy();
         res.json({
-            message: "Successfully deleted",
-            statusCode: 200
+          message: "Successfully deleted",
+          statusCode: 200,
         });
+      } else {
+        const error = new Error("Validation Error");
+        error.status = 400;
+        throw error;
       }
     } else {
       const error = new Error("Comment couldn't be found");

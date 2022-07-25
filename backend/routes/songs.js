@@ -157,8 +157,12 @@ router.delete("/:songId", requireAuth, async (req, res) => {
       await deletedSong.destroy();
       res.json({
         message: "Successfully deleted",
-        statusCode: 200
-      })
+        statusCode: 200,
+      });
+    } else {
+      const error = new Error("Validation Error");
+      error.status = 400;
+      throw error;
     }
   } else {
     const error = new Error("Song couldn't be found");
