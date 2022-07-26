@@ -2,9 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const { requireAuth } = require("../utils/auth");
-const { songValidation, commentValidation } = require("../utils/validation");
+const { songValidation, commentValidation, pageValidation } = require("../utils/validation");
 
 const { Song, Album, Comment, User, sequelize } = require("../db/models");
+
+const { environment } = require("../config");
+const isProduction = environment === "production";
 
 // Get all Comments by a Song's id
 router.get("/:songId/comments", async (req, res) => {
@@ -78,7 +81,44 @@ router.get("/:songId", async (req, res) => {
 })
 
 // Get All Songs
-router.get("/", async (req, res) => {
+router.get("/", pageValidation, async (req, res) => {
+  let { page, size, createdAt, title } = req.query;
+  if (page) page = parseInt(page);
+  if (size) size = parseInt(size);
+
+  let where = {};
+  let pag = {};
+
+  if (!page) page = 0;
+  if (!size) size = 20;
+
+  if (page > 10) {
+    page = 0;
+  } else {
+    page = page;
+  }
+
+  if (size > 20) {
+    size = 20;
+  } else {
+    size = size;
+  }
+
+  if (page > 0) {
+    pag.limit = size;
+    pag.offset = size * (page - 1);
+  } else {
+    pag.limit = size;
+  }
+
+  if (isProduction) {
+    if (title) where.title = { [Op.ilike]: `%${title}%` };
+    if (createdAt) where.createdAt = createdAt;
+  } else {
+    if (title) where.title = { [Op.like]: `%${title}%` };
+    if (createdAt) where.createdAt = createdAt;
+  }
+
     const allSongs = await Song.findAll({
       attributes: [
         "id",
@@ -91,9 +131,11 @@ router.get("/", async (req, res) => {
         "updatedAt",
         [sequelize.col("Song.imageUrl"), "previewImage"],
       ],
+      where: { ...where },
+      ...pag
     });
-    res.json({ allSongs });
-})
+    res.json({ allSongs, page, size });
+});
 
 // Create a Comment for a Song based on the Song's id
 router.post("/:songId/comments", requireAuth, commentValidation, async (req, res) => {
