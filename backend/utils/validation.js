@@ -20,26 +20,51 @@ const handleValidationErrors = (req, _res, next) => {
 
 // songs.js and albums.js
 const songValidation = [
-  check("title").exists({ checkFalsy: true }).withMessage("Song title is required"),
+  check("title")
+    .exists({ checkFalsy: true })
+    .withMessage("Song title is required"),
   check("url").exists({ checkFalsy: true }).withMessage("Audio is required"),
-  handleValidationErrors
+  handleValidationErrors,
 ];
 
 // albums.js
 const albumValidation = [
-  check("title").exists({ checkFalsy: true }).withMessage("Album title is required"),
+  check("title")
+    .exists({ checkFalsy: true })
+    .withMessage("Album title is required"),
   handleValidationErrors,
 ];
 
 // songs.js and comments.js
 const commentValidation = [
-  check("body").exists({ checkFalsy: true }).withMessage("Comment body text is required"),
+  check("body")
+    .exists({ checkFalsy: true })
+    .withMessage("Comment body text is required"),
   handleValidationErrors,
 ];
 
 // playlists.js
 const playlistValidation = [
-  check("name").exists({ checkFalsy: true }).withMessage("Playlist name is required"),
+  check("name")
+    .exists({ checkFalsy: true })
+    .withMessage("Playlist name is required"),
+  handleValidationErrors,
+];
+
+// songs.js
+const pageValidation = [
+  check("page")
+    .optional({ nullable: true })
+    .isInt({ min: 0 })
+    .withMessage("Page must be greater than or equal to 0"),
+  check("size")
+    .optional({ nullable: true })
+    .isInt({ min: 0 })
+    .withMessage("Size must be greater than or equal to 0"),
+  check("createdAt")
+    .optional({ nullable: true })
+    .isDate()
+    .withMessage("CreatedAt is invalid"),
   handleValidationErrors,
 ];
 
@@ -49,4 +74,5 @@ module.exports = {
   albumValidation,
   commentValidation,
   playlistValidation,
+  pageValidation,
 };
