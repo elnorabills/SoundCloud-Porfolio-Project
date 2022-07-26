@@ -56,7 +56,7 @@ router.get("/:songId", async (req, res) => {
           attributes: [
             "id",
             "username",
-            [sequelize.col("Song.imageUrl"), "previewImage"],
+            [sequelize.col("imageUrl"), "previewImage"],
           ],
         },
         {
@@ -64,7 +64,7 @@ router.get("/:songId", async (req, res) => {
           attributes: [
             "id",
             "title",
-            [sequelize.col("Song.imageUrl"), "previewImage"],
+            [sequelize.col("imageUrl"), "previewImage"],
           ],
         },
       ],
