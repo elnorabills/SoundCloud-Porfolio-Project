@@ -88,7 +88,7 @@ router.post("/:albumId", requireAuth, songValidation, async (req, res) => {
                 url,
                 imageUrl
             });
-            createdSong.dataValues.previewImage = imageUrl;
+            createdSong.dataValues.previewImage = createdSong.dataValues.imageUrl;
             delete createdSong.dataValues.imageUrl;
 
             res.status(201);
@@ -116,7 +116,7 @@ router.post("/", requireAuth, albumValidation, async (req, res) => {
         description,
         imageUrl
     })
-    newAlbum.dataValues.previewImage = imageUrl;
+    newAlbum.dataValues.previewImage = newAlbum.dataValues.imageUrl;
     delete newAlbum.dataValues.imageUrl;
 
     res.status(201);
@@ -138,7 +138,7 @@ router.put("/:albumId", requireAuth, albumValidation, async (req, res) => {
           description,
           imageUrl,
         });
-        editedAlbum.dataValues.previewImage = imageUrl;
+        editedAlbum.dataValues.previewImage = editedAlbum.dataValues.imageUrl;
         delete editedAlbum.dataValues.imageUrl;
 
         res.json(editedAlbum);

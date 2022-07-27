@@ -92,7 +92,7 @@ router.post("/", requireAuth, playlistValidation, async (req, res) => {
     name,
     imageUrl,
   });
-  newPlaylist.dataValues.previewImage = imageUrl;
+  newPlaylist.dataValues.previewImage = newPlaylist.dataValues.imageUrl;
   delete newPlaylist.dataValues.imageUrl;
 
   res.status(201);
@@ -116,7 +116,7 @@ router.put(
           name,
           imageUrl,
         });
-        editedPlaylist.dataValues.previewImage = imageUrl;
+        editedPlaylist.dataValues.previewImage = editedPlaylist.dataValues.imageUrl;
         delete editedPlaylist.dataValues.imageUrl;
 
         res.json(editedPlaylist);

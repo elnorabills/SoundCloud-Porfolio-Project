@@ -175,7 +175,7 @@ router.put("/:songId", requireAuth, songValidation, async (req, res) => {
         url,
         imageUrl,
       });
-      editedSong.dataValues.previewImage = imageUrl;
+      editedSong.dataValues.previewImage = editedSong.dataValues.imageUrl;
       delete editedSong.dataValues.imageUrl;
 
       res.json(editedSong);
