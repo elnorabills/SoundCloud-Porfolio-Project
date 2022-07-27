@@ -5,6 +5,7 @@ const { requireAuth } = require("../utils/auth");
 const { songValidation, commentValidation, pageValidation } = require("../utils/validation");
 
 const { Song, Album, Comment, User, sequelize } = require("../db/models");
+const { Op } = require("sequelize");
 
 const { environment } = require("../config");
 const isProduction = environment === "production";
