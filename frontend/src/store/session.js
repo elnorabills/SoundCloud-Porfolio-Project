@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const SET_SESSION_USER = "session/SET_SESSION_USER";
 const REMOVE_SESSION_USER = "session/REMOVE_SESSION_USER";
 const RETAIN_USER = "session/RETAIN_USER";
+const SIGN_UP = "session/sign-up"
 
 const setSessionUser = (user) => {
   return {
@@ -20,6 +21,13 @@ const removeSessionUser = () => {
 const retainUser = (user) => {
   return {
     type: RETAIN_USER,
+    payload: user
+  }
+}
+
+const signUp = (user) => {
+  return {
+    type: SIGN_UP,
     payload: user
   }
 }
@@ -45,6 +53,18 @@ export const restoreSessionUser = () => async (dispatch) => {
   }
 }
 
+export const signupUser = (user) => async (dispatch) => {
+  const newUser = await csrfFetch("/api/users/sign-up", {
+    method: "POST",
+    body: JSON.stringify(user),
+  });
+  if (newUser.ok) {
+    const user = await newUser.json();
+    dispatch(signUp(user));
+    return user;
+  }
+}
+
 const defaultState = { user: null };
 
 const sessionReducer = (state = defaultState, action) => {
@@ -57,6 +77,9 @@ const sessionReducer = (state = defaultState, action) => {
       newState.user = null;
       return newState;
     case RETAIN_USER:
+      newState.user = action.payload;
+      return newState;
+    case SIGN_UP:
       newState.user = action.payload;
       return newState;
     default:
