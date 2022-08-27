@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const SET_SESSION_USER = "session/SET_SESSION_USER";
 const REMOVE_SESSION_USER = "session/REMOVE_SESSION_USER";
+const RETAIN_USER = "session/RETAIN_USER";
 
 const setSessionUser = (user) => {
   return {
@@ -16,8 +17,14 @@ const removeSessionUser = () => {
   };
 };
 
+const retainUser = (user) => {
+  return {
+    type: RETAIN_USER,
+    payload: user
+  }
+}
+
 export const sessionLogin = (user) => async (dispatch) => {
-  //const { credential, password } = user;
   const response = await csrfFetch("/api/session/login", {
     method: "POST",
     body: JSON.stringify(user),
@@ -29,6 +36,15 @@ export const sessionLogin = (user) => async (dispatch) => {
   }
 };
 
+export const restoreSessionUser = () => async (dispatch) => {
+  const response = await csrfFetch("/api/session")
+  const { user } = await response.json();
+  if (user) {
+    dispatch(retainUser(user))
+    return response;
+  }
+}
+
 const defaultState = { user: null };
 
 const sessionReducer = (state = defaultState, action) => {
@@ -39,6 +55,9 @@ const sessionReducer = (state = defaultState, action) => {
       return newState;
     case REMOVE_SESSION_USER:
       newState.user = null;
+      return newState;
+    case RETAIN_USER:
+      newState.user = action.payload;
       return newState;
     default:
       return state;
