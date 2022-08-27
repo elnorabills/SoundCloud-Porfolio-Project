@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
+import SignupFormPage from "./components/SignupFormPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -10,12 +11,17 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreSessionUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  return isLoaded && (
-    <Switch>
-      <Route path="/login">
-        <LoginFormPage />
-      </Route>
-    </Switch>
+  return (
+    isLoaded && (
+      <Switch>
+        <Route path="/login">
+          <LoginFormPage />
+        </Route>
+        <Route path="/sign-up">
+          <SignupFormPage />
+        </Route>
+      </Switch>
+    )
   );
 }
 
