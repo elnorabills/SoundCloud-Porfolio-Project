@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import SignupFormPage from "./components/SignupFormPage";
+import Navigation from "./components/Navigation";
 
 function App() {
   const dispatch = useDispatch();
@@ -11,18 +12,22 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreSessionUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  return (
-    isLoaded && (
-      <Switch>
-        <Route path="/login">
-          <LoginFormPage />
-        </Route>
-        <Route path="/sign-up">
-          <SignupFormPage />
-        </Route>
-      </Switch>
-    )
-  );
+
+    return (
+      <>
+        <Navigation isLoaded={isLoaded} />
+        {isLoaded && (
+          <Switch>
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/sign-up">
+              <SignupFormPage />
+            </Route>
+          </Switch>
+        )}
+      </>
+    );
 }
 
 export default App;
