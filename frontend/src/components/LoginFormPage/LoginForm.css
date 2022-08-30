@@ -30,7 +30,7 @@ label {
     font-size: 20px;
 }
 
-button {
+.login button {
     width: 100%;
     font-size: 20px;
     padding: 10px;
@@ -40,7 +40,7 @@ button {
     margin: 20px 0;
 }
 
-button:hover {
+.login button:hover {
     cursor: pointer;
     background-color: rgb(98, 23, 168);
 }
