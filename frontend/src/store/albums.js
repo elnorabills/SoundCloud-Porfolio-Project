@@ -23,6 +23,15 @@ export const allAlbumsThunk = () => async (dispatch) => {
   }
 };
 
+export const oneAlbumThunk = (albumId) => async (dispatch) => {
+  let res = await csrfFetch(`/albums/${albumId}`);
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(getAllAlbumsAction(data));
+  }
+};
+
 const albumsReducer = (state = {}, action) => {
     switch(action.type) {
         case GET_ALL_ALBUMS:

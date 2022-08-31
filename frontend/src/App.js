@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import AllSongs from "./components/AllSongs/AllSongs";
 import SingleSong from "./components/SingleSong/SingleSong";
 import AllAlbums from "./components/AllAlbums/AllAlbums";
+import SingleAlbum from "./components/SingleAlbum/SingleAlbum";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route exact path="/albums">
               <AllAlbums />
+            </Route>
+            <Route path="/albums/:albumId">
+              <SingleAlbum />
             </Route>
             <Route>
               <h1>404: Not Found</h1>
