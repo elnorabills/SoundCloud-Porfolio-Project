@@ -22,7 +22,7 @@ function AllSongs() {
             {
                 Object.keys(songs).map(songId => {
                     return (
-                        <Link key={songId} to={`/song/${songId}`}>
+                        <Link key={songId} to={`/songs/${songId}`}>
                             <div
                             style={{
                                 width: '200px',
