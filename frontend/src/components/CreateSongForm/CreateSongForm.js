@@ -29,7 +29,7 @@ function CreateSongForm () {
 
        let createdSong = await dispatch(createSongThunk(payload));
        if (createdSong) {
-           history.push("/songs");
+           history.push(`/songs/${createdSong.id}`);
        }
        return setErrors([
          "Must have a title and url",
@@ -81,25 +81,7 @@ function CreateSongForm () {
              onChange={(e) => setImageUrl(e.target.value)}
            />
          </label>
-         <label>
-           Password:
-           <input
-             type="password"
-             value={password}
-             onChange={(e) => setPassword(e.target.value)}
-             required
-           />
-         </label>
-         <label>
-           Confirm Password:
-           <input
-             type="password"
-             value={confirmPassword}
-             onChange={(e) => setConfirmPassword(e.target.value)}
-             required
-           />
-         </label>
-         <button type="submit">Sign Up</button>
+         <button type="submit">Create Song </button>
        </form>
      );
 };
