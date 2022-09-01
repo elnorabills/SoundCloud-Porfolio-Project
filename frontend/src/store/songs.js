@@ -1,9 +1,9 @@
+
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
 //const CLEAR_SONGS = 'songs/CLEAR_SONGS';
 // const EDIT_SONG = 'songs/EDIT_SONG';
-const CREATE_SONG = 'songs/CREATE_SONG';
 const GET_ONE_SONG = 'songs/GET_ONE_SONG';
 
 const getAllSongs = (songs) => {
@@ -20,12 +20,6 @@ const getOneSong = (song) => {
   };
 };
 
-const createSongAction = (song) => {
-    return {
-        type: CREATE_SONG,
-        payload: song
-    }
-}
 
 // export const clearSongsAction = () => {
 //     return {
@@ -34,17 +28,7 @@ const createSongAction = (song) => {
 //     }
 // }
 
-export const createSongThunk = (payload) => async (dispatch) => {
-  const response = await csrfFetch("/songs", {
-    method: "POST",
-    body: JSON.stringify(payload),
-  });
-  if (response.ok) {
-    const newSong = await response.json();
-    dispatch(createSongAction(newSong));
-    return newSong;
-  }
-};
+
 
 export const allSongsThunk = () => async dispatch => {
     let allSongs = await csrfFetch("/songs");
@@ -78,8 +62,6 @@ const songsReducer = (state = {}, action) => {
             return action.payload
         // case CLEAR_SONGS:
         //     return action.payload
-        case CREATE_SONG:
-            return { ...state, ...action.payload }
         default:
             return state;
     }

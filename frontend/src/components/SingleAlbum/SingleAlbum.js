@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 function SingleAlbum () {
     const dispatch = useDispatch();
     const { albumId } = useParams();
-    const album = useSelector(state => state.albums[albumId]);
+    const album = useSelector(state => state.albums);
 
     useEffect(() => {
         dispatch(oneAlbumThunk(albumId))

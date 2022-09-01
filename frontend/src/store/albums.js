@@ -1,6 +1,8 @@
 import { csrfFetch } from "./csrf";
 
-const GET_ALL_ALBUMS = "songs/GET_ALL_ALBUMS";
+const GET_ALL_ALBUMS = "albums/GET_ALL_ALBUMS";
+const CREATE_ALBUM = "albums/CREATE_ALBUM";
+const CREATE_SONG = "albums/CREATE_SONG";
 
 const getAllAlbumsAction = (albums) => {
     return {
@@ -8,6 +10,20 @@ const getAllAlbumsAction = (albums) => {
         payload: albums
     }
 }
+
+const createAlbumAction = (album) => {
+    return {
+        type: CREATE_ALBUM,
+        payload: album
+    }
+}
+
+const createSongAction = (song) => {
+  return {
+    type: CREATE_SONG,
+    payload: song,
+  };
+};
 
 export const allAlbumsThunk = () => async (dispatch) => {
   let res = await csrfFetch("/albums");
@@ -32,12 +48,40 @@ export const oneAlbumThunk = (albumId) => async (dispatch) => {
   }
 };
 
+export const createAlbumThunk = (payload) => async (dispatch) => {
+  const response = await csrfFetch("/albums", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const newAlbum = await response.json();
+    dispatch(createAlbumAction(newAlbum));
+    return newAlbum;
+  }
+};
+
+export const createSongThunk = (payload, albumId) => async (dispatch) => {
+  const response = await csrfFetch(`/albums/${albumId}`, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const newSong = await response.json();
+    dispatch(createSongAction(newSong));
+    return newSong;
+  }
+};
+
 const albumsReducer = (state = {}, action) => {
-    switch(action.type) {
-        case GET_ALL_ALBUMS:
-            return action.payload
-        default:
-            return state
+    switch (action.type) {
+      case GET_ALL_ALBUMS:
+        return action.payload;
+      case CREATE_ALBUM:
+        return { ...state, ...action.payload };
+      case CREATE_SONG:
+        return { ...state, ...action.payload };
+      default:
+        return state;
     }
 }
 

@@ -6,8 +6,7 @@ import { useParams } from "react-router-dom";
 function SingleSong () {
     const dispatch = useDispatch();
     const { songId } = useParams();
-    const song = useSelector((state) => state.songs[songId]);
-    const songTitle = song.title
+    const song = useSelector((state) => state.songs);
 
     useEffect(() => {
         dispatch(oneSongThunk(songId))
@@ -15,7 +14,7 @@ function SingleSong () {
 
     return (
       <div>
-        <h1>{songTitle}</h1>
+        <h1>{song.title}</h1>
       </div>
     );
 }
