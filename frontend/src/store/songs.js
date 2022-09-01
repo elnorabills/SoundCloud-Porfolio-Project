@@ -5,6 +5,7 @@ const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
 //const CLEAR_SONGS = 'songs/CLEAR_SONGS';
 // const EDIT_SONG = 'songs/EDIT_SONG';
 const GET_ONE_SONG = 'songs/GET_ONE_SONG';
+const CREATE_SONG = "songs/CREATE_SONG";
 
 const getAllSongs = (songs) => {
     return {
@@ -20,6 +21,12 @@ const getOneSong = (song) => {
   };
 };
 
+const createSongAction = (song) => {
+  return {
+    type: CREATE_SONG,
+    payload: song,
+  };
+};
 
 // export const clearSongsAction = () => {
 //     return {
@@ -53,17 +60,31 @@ export const oneSongThunk = (songId) => async (dispatch) => {
   }
 };
 
+export const createSongThunk = (payload, albumId) => async (dispatch) => {
+  const response = await csrfFetch(`/albums/${albumId}`, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const newSong = await response.json();
+    dispatch(createSongAction(newSong));
+    return newSong;
+  }
+};
+
 const songsReducer = (state = {}, action) => {
     //const newState = { ...state };
     switch (action.type) {
-        case GET_ALL_SONGS:
-            return action.payload
-        case GET_ONE_SONG:
-            return action.payload
-        // case CLEAR_SONGS:
-        //     return action.payload
-        default:
-            return state;
+      case GET_ALL_SONGS:
+        return action.payload;
+      case GET_ONE_SONG:
+        return action.payload;
+      case CREATE_SONG:
+        return { ...state, ...action.payload };
+      // case CLEAR_SONGS:
+      //     return action.payload
+      default:
+        return state;
     }
 }
 

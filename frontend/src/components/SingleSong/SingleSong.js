@@ -15,6 +15,9 @@ function SingleSong () {
     return (
       <div>
         <h1>{song.title}</h1>
+        <h2>Song Description: {song.description}</h2>
+        <button>Edit</button>
+        <button>Delete</button>
       </div>
     );
 }

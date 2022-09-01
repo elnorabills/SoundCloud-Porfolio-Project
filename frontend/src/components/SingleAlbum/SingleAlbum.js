@@ -15,6 +15,9 @@ function SingleAlbum () {
     return (
       <div>
         <h1>{album.title}</h1>
+        <h2>{album.description}</h2>
+        <button>Edit</button>
+        <button>Delete</button>
       </div>
     );
 }
