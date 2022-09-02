@@ -1,14 +1,14 @@
-import { allAlbumsThunk } from "../../store/albums";
+import { meAlbumsThunk } from "../../store/me";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function AllAlbums() {
+function UserAlbums() {
   const dispatch = useDispatch();
-  const albums = useSelector((state) => state.albums);
+  const meAlbums = useSelector((state) => state.me);
 
   useEffect(() => {
-    dispatch(allAlbumsThunk());
+    dispatch(meAlbumsThunk());
   }, [dispatch]);
 
   return (
@@ -19,9 +19,9 @@ function AllAlbums() {
         gap: "10px",
       }}
     >
-      {Object.keys(albums).map((albumId) => {
+      {Object.keys(meAlbums).map((albumId) => {
         return (
-         // <Link key={albumId} to={`/albums/${albumId}`}>
+          <Link key={albumId} to={`/albums/${albumId}`}>
             <div
               style={{
                 width: "200px",
@@ -29,13 +29,13 @@ function AllAlbums() {
                 border: "1px solid black",
               }}
             >
-              {albums[albumId].title}
+              {meAlbums[albumId].title}
             </div>
-         // </Link>
+          </Link>
         );
       })}
     </div>
   );
 }
 
-export default AllAlbums;
+export default UserAlbums;

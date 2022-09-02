@@ -9,6 +9,8 @@ import AllSongs from "./components/AllSongs/AllSongs";
 import SingleSong from "./components/SingleSong/SingleSong";
 import AllAlbums from "./components/AllAlbums/AllAlbums";
 import SingleAlbum from "./components/SingleAlbum/SingleAlbum";
+import UserSongs from "./components/UserSongs/UserSongs";
+import UserAlbums from "./components/UserAlbums/UserAlbums";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +44,12 @@ function App() {
             </Route>
             <Route path="/albums/:albumId">
               <SingleAlbum />
+            </Route>
+            <Route path="/me/songs">
+              <UserSongs />
+            </Route>
+            <Route path="/me/albums">
+              <UserAlbums />
             </Route>
             <Route>
               <h1>404: Not Found</h1>

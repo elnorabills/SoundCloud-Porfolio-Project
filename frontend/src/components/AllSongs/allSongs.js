@@ -1,7 +1,7 @@
 import { allSongsThunk } from "../../store/songs";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 function AllSongs() {
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function AllSongs() {
             {
                 Object.keys(songs).map(songId => {
                     return (
-                        <Link key={songId} to={`/songs/${songId}`}>
+                       // <Link key={songId} to={`/songs/${songId}`}>
                             <div
                             style={{
                                 width: '200px',
@@ -32,7 +32,7 @@ function AllSongs() {
                             >
                                 {songs[songId].title}
                             </div>
-                        </Link>
+                      //  </Link>
                     )
                 })
             }

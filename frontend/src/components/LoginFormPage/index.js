@@ -13,6 +13,14 @@ function LoginFormPage() {
 
     if (sessionUser) return <Redirect to="/" />;
 
+    const demoUsername = "RockMan3";
+    const demoUserPassword = 'password4';
+
+    const demoUserLogin = () => {
+      setCredential(demoUsername);
+      setPassword(demoUserPassword);
+    }
+
     const handleSubmit = (e) => {
       e.preventDefault();
       setErrors([]);
@@ -55,6 +63,9 @@ function LoginFormPage() {
             </label>
           </div>
           <button className="login">Log In</button>
+          <button className="Demo-User" onClick={demoUserLogin}>
+            Demo User
+          </button>
         </form>
       </div>
     );

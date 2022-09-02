@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+import { Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+
 
   const openMenu = () => {
     if (showMenu) return;
@@ -26,6 +29,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logoutUser());
+    <Redirect to="/" />
   };
 
   return (
@@ -36,6 +40,12 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div className="profile-dropdown">
           <div>{user.email}</div>
+          <div>
+            <NavLink to="/me/songs">My Songs</NavLink>
+          </div>
+          <div>
+            <NavLink to="/me/albums">My Albums</NavLink>
+          </div>
           <div>
             <button onClick={logout}>Log Out</button>
           </div>
