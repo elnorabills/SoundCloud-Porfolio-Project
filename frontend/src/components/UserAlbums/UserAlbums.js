@@ -2,14 +2,18 @@ import { meAlbumsThunk } from "../../store/me";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 function UserAlbums() {
   const dispatch = useDispatch();
   const meAlbums = useSelector((state) => state.me);
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(meAlbumsThunk());
   }, [dispatch]);
+
+  if (!sessionUser) return <Redirect to="/" />;
 
   return (
     <div

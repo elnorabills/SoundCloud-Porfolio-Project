@@ -3,17 +3,21 @@ import { oneAlbumThunk } from '../../store/albums';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { meSongsThunk } from "../../store/me";
+import { Redirect } from "react-router-dom";
 
 function SingleAlbum () {
     const dispatch = useDispatch();
     const { albumId } = useParams();
     const album = useSelector(state => state.albums);
     const albumSongs = useSelector(state => state.me);
+    const sessionUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
         dispatch(oneAlbumThunk(albumId))
         dispatch(meSongsThunk())
     }, [dispatch, albumId]);
+
+    if (!sessionUser) return <Redirect to="/" />;
 
     return (
       <div>

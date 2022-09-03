@@ -2,14 +2,18 @@ import { meSongsThunk } from "../../store/me";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 function UserSongs() {
   const dispatch = useDispatch();
   const meSongs = useSelector((state) => state.me);
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(meSongsThunk());
   }, [dispatch]);
+
+  if (!sessionUser) return <Redirect to="/" />;
 
   return (
     <div
