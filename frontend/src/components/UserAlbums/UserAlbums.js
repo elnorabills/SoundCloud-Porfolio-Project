@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import CreateAlbumForm from "../CreateAlbumForm/CreateAlbumForm";
 
 function UserAlbums() {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function UserAlbums() {
           </Link>
         );
       })}
+      <div>
+        {<CreateAlbumForm />}
+      </div>
     </div>
   );
 }

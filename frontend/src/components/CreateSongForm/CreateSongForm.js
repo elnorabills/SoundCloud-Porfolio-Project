@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createSongThunk } from '../../store/songs';
-import { allSongsThunk } from '../../store/songs';
+import { useParams } from "react-router-dom";
 
 function CreateSongForm () {
     const dispatch = useDispatch();
@@ -12,10 +12,7 @@ function CreateSongForm () {
     const [url, setUrl] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [errors, setErrors] = useState([]);
-
-    useEffect(() => {
-        dispatch(allSongsThunk())
-    }, [dispatch])
+    const { albumId } = useParams();
 
      const handleSubmit = async (e) => {
        e.preventDefault();
@@ -27,7 +24,7 @@ function CreateSongForm () {
          imageUrl
        };
 
-       let createdSong = await dispatch(createSongThunk(payload));
+       let createdSong = await dispatch(createSongThunk(payload, albumId));
        if (createdSong) {
            history.push(`/songs/${createdSong.id}`);
        }
@@ -81,7 +78,7 @@ function CreateSongForm () {
              onChange={(e) => setImageUrl(e.target.value)}
            />
          </label>
-         <button type="submit">Create Song </button>
+         <button type="submit">Add Song</button>
        </form>
      );
 };
