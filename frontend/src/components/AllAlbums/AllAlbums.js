@@ -22,7 +22,7 @@ function AllAlbums() {
       {Object.keys(albums).map((albumId) => {
         return (
          // <Link key={albumId} to={`/albums/${albumId}`}>
-            <div
+            <div key={albumId}
               style={{
                 width: "200px",
                 height: "200px",
