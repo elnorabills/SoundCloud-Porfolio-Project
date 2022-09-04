@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import "./LoginForm.css";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -32,33 +33,52 @@ function LoginFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Username or Email
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button className="login" type="submit">Log In</button>
-      <button className="Demo-Login" onClick={demoUserLogin}>Demo User</button>
-    </form>
+    <div className="container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div>
+          <h1 className="h1-login">Login</h1>
+        </div>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <div className="flex-input">
+          <label>
+            {/* Username or Email */}
+            <input
+              type="text"
+              placeholder="Username or Email"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className="flex-input">
+          <label>
+            {/* Password */}
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <button className="login-button" type="submit">
+            LOG IN
+          </button>
+        </div>
+        <div>
+          <button className="Demo-Login-button" onClick={demoUserLogin}>
+            DEMO USER
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 
