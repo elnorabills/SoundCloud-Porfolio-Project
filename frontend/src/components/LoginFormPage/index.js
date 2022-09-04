@@ -38,14 +38,13 @@ function LoginFormPage() {
         <div>
           <h1 className="h1-login">Login</h1>
         </div>
-        <ul>
+        <ul className="login-errors">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
         <div className="flex-input">
           <label>
-            {/* Username or Email */}
             <input
               type="text"
               placeholder="Username or Email"
@@ -57,7 +56,6 @@ function LoginFormPage() {
         </div>
         <div className="flex-input">
           <label>
-            {/* Password */}
             <input
               type="password"
               placeholder="Password"

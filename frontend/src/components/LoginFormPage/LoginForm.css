@@ -66,3 +66,8 @@ input[type="text"], [type="password"] {
       transition: 0.7s;
       color: black;
   }
+
+  .login-errors {
+    font-family: sans-serif;
+    color: white;
+  }
