@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 //import LoginFormModal from "../LoginFormModal";
 import "./Navigation.css";
+import soundcloudLogo from "../../images/wsound.png";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -14,23 +15,46 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/sign-up">Sign Up</NavLink>
+        <li>
+          <NavLink className="nav-link" to="/login">
+            Log In
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="nav-link" to="/sign-up">
+            Sign Up
+          </NavLink>
+        </li>
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-        <NavLink to="/songs">Songs</NavLink>
-        <NavLink to="/albums">Albums</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div className="nav-bar-comp">
+      <header>
+        <img src={soundcloudLogo} alt="soundCloud logo" />
+        <nav className="nav-ele">
+          <ul>
+            <li>
+              <NavLink className="nav-link" exact to="/">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav-link" to="/songs">
+                Songs
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav-link" to="/albums">
+                Albums
+              </NavLink>
+            </li>
+            {isLoaded && sessionLinks}
+          </ul>
+        </nav>
+      </header>
+    </div>
   );
 }
 

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { Redirect } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import "./ProfileButton.css"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -34,22 +35,28 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className="prof-button-user" onClick={openMenu}>
         <i className="fa-solid fa-user"></i>
       </button>
       {showMenu && (
-        <div className="profile-dropdown">
-          <div>{user.email}</div>
-          <div>
-            <NavLink to="/me/songs">My Songs</NavLink>
-          </div>
-          <div>
-            <NavLink to="/me/albums">My Albums</NavLink>
-          </div>
-          <div>
-            <button onClick={logout}>Log Out</button>
-          </div>
-        </div>
+        <ul className="profile-dropdown">
+          <li>Email: {user.email}</li>
+          <li>
+            <NavLink className="nav-link" to="/me/songs">
+              My Songs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="nav-link" to="/me/albums">
+              My Albums
+            </NavLink>
+          </li>
+          <li>
+            <button className="prof-button-logout" onClick={logout}>
+              Log Out
+            </button>
+          </li>
+        </ul>
       )}
     </>
   );
