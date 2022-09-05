@@ -2,6 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_ALBUMS = "albums/GET_ALL_ALBUMS";
 const CREATE_ALBUM = "albums/CREATE_ALBUM";
+const EDIT_ALBUM = "albums/EDIT_ALBUM";
+const DELETE_ALBUM = "albums/DELETE_ALBUM";
 
 const getAllAlbumsAction = (albums) => {
     return {
@@ -16,6 +18,20 @@ const createAlbumAction = (album) => {
         payload: album
     }
 }
+
+const editAlbum = (album) => {
+  return {
+    type: EDIT_ALBUM,
+    payload: album,
+  };
+};
+
+const deleteAlbumAction = (albumId) => {
+  return {
+    type: DELETE_ALBUM,
+    payload: albumId,
+  };
+};
 
 export const allAlbumsThunk = () => async (dispatch) => {
   let res = await csrfFetch("/albums");
@@ -52,12 +68,39 @@ export const createAlbumThunk = (payload) => async (dispatch) => {
   }
 };
 
+export const editAlbumThunk = (albumId, payload) => async (dispatch) => {
+  const response = await csrfFetch(`/albums/${albumId}`, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const editedAlbum = await response.json();
+    dispatch(editAlbum(editedAlbum));
+    return editedAlbum;
+  }
+};
+
+export const deleteAlbumThunk = (albumId) => async (dispatch) => {
+  const response = await csrfFetch(`/albums/${albumId}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    dispatch(deleteAlbumAction(albumId));
+  }
+};
+
 const albumsReducer = (state = {}, action) => {
     switch (action.type) {
       case GET_ALL_ALBUMS:
         return action.payload;
       case CREATE_ALBUM:
         return { ...state, ...action.payload };
+      case EDIT_ALBUM:
+        return { ...state, ...action.payload };
+      case DELETE_ALBUM:
+        const newState = { ...state };
+        delete newState[action.payload];
+        return newState;
       default:
         return state;
     }

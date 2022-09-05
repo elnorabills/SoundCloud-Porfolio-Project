@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { oneAlbumThunk } from '../../store/albums';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 //import { meSongsThunk } from "../../store/me";
 import { Redirect } from "react-router-dom";
 import CreateSongForm from '../CreateSongForm/CreateSongForm';
+import { deleteAlbumThunk } from '../../store/albums';
 
 function SingleAlbum () {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { albumId } = useParams();
     const album = useSelector(state => state.albums);
     //const albumSongs = useSelector(state => state.me);
@@ -18,15 +20,33 @@ function SingleAlbum () {
        // dispatch(meSongsThunk())
     }, [dispatch, albumId]);
 
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      dispatch(deleteAlbumThunk(albumId));
+      history.push("/me/albums")
+    };
+
     if (!sessionUser) return <Redirect to="/" />;
+
+    let sessionUserActions;
+
+    if (sessionUser.id === album.userId) {
+      sessionUserActions = (
+        <div className='delete-album-button-container'>
+          <button className="delete-album-button" onClick={handleSubmit}>
+            Delete
+          </button>
+        </div>
+      );
+    }
 
     return (
       <div>
         <h1>{album.title}</h1>
         <h2>{album.description}</h2>
         <button>Edit</button>
-        <button>Delete</button>
         <button>Add Song</button>
+        <div className='session-user-actions'>{sessionUserActions}</div>
         <div
           style={{
             display: "flex",

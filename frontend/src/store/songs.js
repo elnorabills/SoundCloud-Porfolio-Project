@@ -1,16 +1,15 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_SONGS = 'songs/GET_ALL_SONGS';
-//const CLEAR_SONGS = 'songs/CLEAR_SONGS';
 const EDIT_SONG = 'songs/EDIT_SONG';
 const GET_ONE_SONG = 'songs/GET_ONE_SONG';
 const CREATE_SONG = "songs/CREATE_SONG";
 const DELETE_SONG = "songs/DELETE_SONG";
 
-const deleteSongAction = () => {
+const deleteSongAction = (songId) => {
   return {
     type: DELETE_SONG,
-    payload: null
+    payload: songId
   };
 };
 
@@ -41,15 +40,6 @@ const createSongAction = (song) => {
     payload: song,
   };
 };
-
-// export const clearSongsAction = () => {
-//     return {
-//         type: CLEAR_SONGS,
-//         payload: {}
-//     }
-// }
-
-
 
 export const allSongsThunk = () => async dispatch => {
     let allSongs = await csrfFetch("/songs");
@@ -103,13 +93,11 @@ export const deleteSongThunk = (songId) => async (dispatch) => {
     method: "DELETE"
   });
   if (response.ok) {
-    //const deletedSong = await response.json();
-    dispatch(deleteSongAction());
+    dispatch(deleteSongAction(songId));
   }
 };
 
 const songsReducer = (state = {}, action) => {
-    //const newState = { ...state };
     switch (action.type) {
       case GET_ALL_SONGS:
         return action.payload;
@@ -120,9 +108,9 @@ const songsReducer = (state = {}, action) => {
       case EDIT_SONG:
         return { ...state, ...action.payload };
       case DELETE_SONG:
-        return action.payload
-      // case CLEAR_SONGS:
-      //     return action.payload
+        const newState = { ...state };
+        delete newState[action.payload];
+        return newState;
       default:
         return state;
     }
