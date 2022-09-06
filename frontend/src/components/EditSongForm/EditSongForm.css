@@ -1,0 +1,57 @@
+.edit-song-form-container {
+    display: flex;
+    justify-content: center;
+    /* height: 700px; */
+    align-items: center;
+    /* height: 125vh; */
+    /* background-image: url('../../images/bpclouds.jpg');
+    background-size: cover; */
+}
+
+.h1-edit-song-title {
+    font-family: sans-serif;
+    color: white;
+    font-size: 50px;
+}
+
+.edit-song-form {
+    padding: 20px;
+    width: 400px;
+    background-color: rgb(49, 46, 46);
+    border-radius: 10px;
+    box-shadow: 0 0 25px 0 black;
+}
+
+.flex-input-es {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+input[type="text"], [type="password"] {
+    padding: 10px;
+    font-size: 18px;
+    width: 374px;
+}
+
+.save-edits-button {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    background-color: darkviolet;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 20px 0px;
+}
+
+ .save-edits-button:hover {
+      background-color: white;
+      transition: 0.7s;
+      color: black;
+  }
+
+  .edit-song-errors {
+    font-family: sans-serif;
+    color: white;
+  }

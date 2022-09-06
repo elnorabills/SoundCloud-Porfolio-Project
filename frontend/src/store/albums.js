@@ -38,10 +38,12 @@ export const allAlbumsThunk = () => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
+    console.log("data", data);
 
     const albumsObj = {};
     data.allAlbums.forEach((album) => {
       albumsObj[album.id] = album;
+
     });
     dispatch(getAllAlbumsAction(albumsObj));
   }

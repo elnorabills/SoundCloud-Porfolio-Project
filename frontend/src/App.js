@@ -11,6 +11,7 @@ import SingleAlbum from "./components/SingleAlbum/SingleAlbum";
 import UserSongs from "./components/UserSongs/UserSongs";
 import UserAlbums from "./components/UserAlbums/UserAlbums";
 import LoginFormPage from "./components/LoginFormPage";
+import HomePage from "./components/Home/Home";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function App() {
         {isLoaded && (
           <Switch>
             <Route exact path="/">
-              <h1>Home</h1>
+              <HomePage />
             </Route>
             <Route path="/login">
               <LoginFormPage />
