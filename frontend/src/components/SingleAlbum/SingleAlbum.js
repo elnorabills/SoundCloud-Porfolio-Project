@@ -3,8 +3,8 @@ import { oneAlbumThunk } from '../../store/albums';
 import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Redirect } from "react-router-dom";
-import CreateSongForm from '../CreateSongForm/CreateSongForm';
 import { deleteAlbumThunk } from '../../store/albums';
+import CreateSongButtonComp from '../CreateSongForm/CreateSongButton';
 
 function SingleAlbum () {
     const dispatch = useDispatch();
@@ -29,10 +29,13 @@ function SingleAlbum () {
 
     if (sessionUser.id === album.userId) {
       sessionUserActions = (
-        <div className='delete-album-button-container'>
+        <div className="delete-album-button-container">
           <button className="delete-album-button" onClick={handleSubmit}>
             Delete
           </button>
+          <div className="create-song-button-comp">
+            <CreateSongButtonComp />
+          </div>
         </div>
       );
     }
@@ -66,7 +69,6 @@ function SingleAlbum () {
             );
           })} */}
         </div>
-        <div>{<CreateSongForm />}</div>
       </div>
     );
 }

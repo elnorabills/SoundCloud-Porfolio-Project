@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createSongThunk } from '../../store/songs';
 import { useParams } from "react-router-dom";
+import "./CreateSongForm.css";
 
 function CreateSongForm () {
     const dispatch = useDispatch();
@@ -34,52 +35,61 @@ function CreateSongForm () {
      };
 
      return (
-       <form className="create-song-form" onSubmit={handleSubmit}>
-         <ul>
-           {errors.map((error, idx) => (
-             <li key={idx}>{error}</li>
-           ))}
-         </ul>
-         <label>
-           Title:
-           <input
-             type="text"
-             placeholder="Song Title"
-             value={title}
-             onChange={(e) => setTitle(e.target.value)}
-             required
-           />
-         </label>
-         <label>
-           Description:
-           <input
-             type="text"
-             placeholder='Song Description'
-             value={description}
-             onChange={(e) => setDescription(e.target.value)}
-           />
-         </label>
-         <label>
-           Url:
-           <input
-             type="text"
-             placeholder='Song Url'
-             value={url}
-             onChange={(e) => setUrl(e.target.value)}
-             required
-           />
-         </label>
-         <label>
-           Image Url:
-           <input
-             type="text"
-             placeholder='Image Url'
-             value={imageUrl}
-             onChange={(e) => setImageUrl(e.target.value)}
-           />
-         </label>
-         <button type="submit">Add Song</button>
-       </form>
+       <div className="create-song-form-container">
+         <form className="create-song-form" onSubmit={handleSubmit}>
+           <h1 className="h1-create-song-title">Add Song</h1>
+           <ul className="create-song-errors">
+             {errors.map((error, idx) => (
+               <li key={idx}>{error}</li>
+             ))}
+           </ul>
+           <div className="flex-input-cs">
+             <label>
+               <input
+                 type="text"
+                 placeholder="Song Title"
+                 value={title}
+                 onChange={(e) => setTitle(e.target.value)}
+                 required
+               />
+             </label>
+           </div>
+           <div className="flex-input-cs">
+             <label>
+               <input
+                 type="text"
+                 placeholder="Song Description (optional)"
+                 value={description}
+                 onChange={(e) => setDescription(e.target.value)}
+               />
+             </label>
+           </div>
+           <div className="flex-input-cs">
+             <label>
+               <input
+                 type="text"
+                 placeholder="Song Url"
+                 value={url}
+                 onChange={(e) => setUrl(e.target.value)}
+                 required
+               />
+             </label>
+           </div>
+           <div className="flex-input-cs">
+             <label>
+               <input
+                 type="text"
+                 placeholder="Image Url (optional)"
+                 value={imageUrl}
+                 onChange={(e) => setImageUrl(e.target.value)}
+               />
+             </label>
+           </div>
+           <div>
+             <button className="create-song-button" type="submit">Add Song</button>
+           </div>
+         </form>
+       </div>
      );
 };
 

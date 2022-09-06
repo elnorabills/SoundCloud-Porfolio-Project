@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createAlbumThunk } from "../../store/albums";
+import "./CreateAlbumForm.css";
 
 function CreateAlbumForm() {
   const dispatch = useDispatch();
@@ -28,42 +29,50 @@ function CreateAlbumForm() {
   };
 
   return (
-    <form className="create-song-form" onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Title:
-        <input
-          type="text"
-          placeholder="Album Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Description:
-        <input
-          type="text"
-          placeholder="Album Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </label>
-      <label>
-        Image Url:
-        <input
-          type="text"
-          placeholder="Image Url"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
-      </label>
-      <button type="submit">Add Album</button>
-    </form>
+    <div className="create-album-form-container">
+      <form className="create-album-form" onSubmit={handleSubmit}>
+        <h1 className="h1-create-album-title">Create Album</h1>
+        <ul className="create-album-errors">
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <div className="flex-input-ca">
+          <label>
+            <input
+              type="text"
+              placeholder="Album Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className="flex-input-ca">
+          <label>
+            <input
+              type="text"
+              placeholder="Album Description (optional)"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="flex-input-ca">
+          <label>
+            <input
+              type="text"
+              placeholder="Image Url (optional)"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <button className="create-album-button" type="submit">Create Album</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

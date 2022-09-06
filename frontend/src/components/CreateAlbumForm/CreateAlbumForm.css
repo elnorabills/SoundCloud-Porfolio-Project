@@ -1,20 +1,16 @@
-.edit-song-form-container {
+.create-album-form-container {
     display: flex;
     justify-content: center;
-    /* height: 700px; */
     align-items: center;
-    /* height: 125vh; */
-    /* background-image: url('../../images/bpclouds.jpg');
-    background-size: cover; */
 }
 
-.h1-edit-song-title {
+.h1-create-album-title {
     font-family: sans-serif;
     color: white;
     font-size: 50px;
 }
 
-.edit-song-form {
+.create-album-form {
     padding: 20px;
     width: 400px;
     background-color: rgb(49, 46, 46);
@@ -22,7 +18,7 @@
     box-shadow: 0 0 25px 0 black;
 }
 
-.flex-input-es {
+.flex-input-ca {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
@@ -35,7 +31,7 @@ input[type="text"], [type="password"] {
     border-radius: 10px;
 }
 
-.save-edits-button {
+.create-album-button {
     width: 100%;
     font-size: 20px;
     padding: 10px;
@@ -46,13 +42,13 @@ input[type="text"], [type="password"] {
     margin: 20px 0px;
 }
 
- .save-edits-button:hover {
+ .create-album-button:hover {
       background-color: white;
       transition: 0.7s;
       color: black;
   }
 
-  .edit-song-errors {
+  .create-album-errors {
     font-family: sans-serif;
     color: white;
   }

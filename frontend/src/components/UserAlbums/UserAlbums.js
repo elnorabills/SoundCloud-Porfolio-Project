@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import CreateAlbumForm from "../CreateAlbumForm/CreateAlbumForm";
+import CreateAlbumButtonComp from "../CreateAlbumForm/CreateAlbumButton";
 
 function UserAlbums() {
   const dispatch = useDispatch();
@@ -15,6 +15,14 @@ function UserAlbums() {
   }, [dispatch]);
 
   if (!sessionUser) return <Redirect to="/" />;
+
+   const sessionUserActions = (
+      <div className="create-album-button-container">
+        <div className="create-album-button-comp">
+          <CreateAlbumButtonComp />
+        </div>
+      </div>
+    );
 
   return (
     <div
@@ -39,9 +47,7 @@ function UserAlbums() {
           </Link>
         );
       })}
-      <div>
-        {<CreateAlbumForm />}
-      </div>
+      <div className="session-user-actions">{sessionUserActions}</div>
     </div>
   );
 }

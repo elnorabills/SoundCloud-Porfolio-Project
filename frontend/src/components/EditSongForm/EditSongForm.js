@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { editSongThunk } from "../../store/songs";
 import { useParams } from "react-router-dom";
@@ -7,29 +7,30 @@ import "./EditSongForm.css";
 
 function EditSongForm() {
   const dispatch = useDispatch();
+  const song = useSelector((state) => state.songs);
   const history = useHistory();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [stopBtn, setStopBtn] = useState(false);
   const [errors, setErrors] = useState([]);
   const { songId } = useParams();
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setStopBtn(true);
 
     const payload = {
+      ...song,
       title,
-      description,
-      url,
-      imageUrl,
+      description
     };
 
     let editedSong = await dispatch(editSongThunk(songId, payload));
     if (editedSong) {
-      history.push(`/songs/${editedSong.id}`);
+      history.push("/me/songs");
     }
-    return setErrors(["Must have a title and url"]);
+    setStopBtn(false);
   };
 
   return (
@@ -58,35 +59,14 @@ function EditSongForm() {
           <label>
             <input
               type="text"
-              placeholder="Song Description"
+              placeholder="Song Description (optional)"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </label>
         </div>
-        <div className="flex-input-es">
-          <label>
-            <input
-              type="text"
-              placeholder="Song Url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div className="flex-input-es">
-          <label>
-            <input
-              type="text"
-              placeholder="Image Url"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-            />
-          </label>
-        </div>
         <div>
-          <button className="save-edits-button" type="submit">Save</button>
+          <button className="save-edits-button" disabled={stopBtn} type="submit">Save</button>
         </div>
       </form>
     </div>
