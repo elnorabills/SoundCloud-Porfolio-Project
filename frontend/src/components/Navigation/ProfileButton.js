@@ -29,8 +29,7 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.logoutUser());
-    <Redirect to="/" />;
+    dispatch(sessionActions.logoutUser()).then(() => <Redirect to="/" />);
   };
 
   return (
