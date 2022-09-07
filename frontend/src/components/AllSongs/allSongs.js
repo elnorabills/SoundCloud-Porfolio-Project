@@ -1,7 +1,7 @@
 import { allSongsThunk } from "../../store/songs";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-//import { Link } from "react-router-dom";
+import "./AllSongs.css";
 
 function AllSongs() {
     const dispatch = useDispatch();
@@ -12,32 +12,19 @@ function AllSongs() {
     }, [dispatch])
 
     return (
-        <div
-        style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px'
-        }}
-        >
-            {
-                Object.keys(songs).map(songId => {
-                    return (
-                       // <Link key={songId} to={`/songs/${songId}`}>
-                            <div key={songId}
-                            style={{
-                                width: '200px',
-                                height: '200px',
-                                border: '1px solid black'
-                            }}
-                            >
-                                {songs[songId].title}
-                            </div>
-                      //  </Link>
-                    )
-                })
-            }
+      <div className="all-songs-large-container">
+        <h1 className="h1-all-songs-title">All Songs</h1>
+        <div className="all-songs-container">
+          {Object.keys(songs).map((songId) => {
+            return (
+              <div className="all-songs" key={songId}>
+                {songs[songId].title}
+              </div>
+            );
+          })}
         </div>
-    )
+      </div>
+    );
 }
 
 export default AllSongs;

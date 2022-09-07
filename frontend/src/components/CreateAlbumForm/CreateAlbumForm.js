@@ -10,7 +10,7 @@ function CreateAlbumForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [valErrors, setValErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,11 +21,18 @@ function CreateAlbumForm() {
       imageUrl,
     };
 
-    let createdAlbum = await dispatch(createAlbumThunk(payload));
+    let createdAlbum = await dispatch(createAlbumThunk(payload)).catch(
+      async (response) => {
+        const err = await response.json();
+        if (err) {
+          setValErrors(err.errors);
+        }
+      }
+    );
     if (createdAlbum) {
       history.push(`/albums/${createdAlbum.id}`);
     }
-    return setErrors(["Must have a title"]);
+    // return setValErrors(["Must have a title"]);
   };
 
   return (
@@ -33,9 +40,12 @@ function CreateAlbumForm() {
       <form className="create-album-form" onSubmit={handleSubmit}>
         <h1 className="h1-create-album-title">Create Album</h1>
         <ul className="create-album-errors">
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+          {Object.values(valErrors).map((err) => (
+            <li key={err}>{err}</li>
           ))}
+          {/* {valErrors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))} */}
         </ul>
         <div className="flex-input-ca">
           <label>
@@ -69,7 +79,9 @@ function CreateAlbumForm() {
           </label>
         </div>
         <div>
-          <button className="create-album-button" type="submit">Create Album</button>
+          <button className="create-album-button" type="submit">
+            Create Album
+          </button>
         </div>
       </form>
     </div>

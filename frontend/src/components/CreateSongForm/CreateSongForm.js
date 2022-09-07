@@ -12,7 +12,7 @@ function CreateSongForm () {
     const [description, setDescription] = useState("");
     const [url, setUrl] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [valErrors, setValErrors] = useState([]);
     const { albumId } = useParams();
 
      const handleSubmit = async (e) => {
@@ -25,13 +25,20 @@ function CreateSongForm () {
          imageUrl
        };
 
-       let createdSong = await dispatch(createSongThunk(payload, albumId));
+       let createdSong = await dispatch(
+         createSongThunk(payload, albumId)
+       ).catch(async (response) => {
+         const err = await response.json();
+         if (err) {
+           setValErrors(err.errors);
+         }
+       });
        if (createdSong) {
            history.push(`/songs/${createdSong.id}`);
        }
-       return setErrors([
-         "Must have a title and url",
-       ]);
+      //  return setErrors([
+      //    "Must have a title and url",
+      //  ]);
      };
 
      return (
@@ -39,9 +46,12 @@ function CreateSongForm () {
          <form className="create-song-form" onSubmit={handleSubmit}>
            <h1 className="h1-create-song-title">Add Song</h1>
            <ul className="create-song-errors">
-             {errors.map((error, idx) => (
-               <li key={idx}>{error}</li>
+             {Object.values(valErrors).map((err) => (
+               <li key={err}>{err}</li>
              ))}
+             {/* {errors.map((error, idx) => (
+               <li key={idx}>{error}</li>
+             ))} */}
            </ul>
            <div className="flex-input-cs">
              <label>
@@ -86,7 +96,9 @@ function CreateSongForm () {
              </label>
            </div>
            <div>
-             <button className="create-song-button" type="submit">Add Song</button>
+             <button className="create-song-button" type="submit">
+               Add Song
+             </button>
            </div>
          </form>
        </div>

@@ -1,0 +1,33 @@
+
+
+.all-albums-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 35px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.all-albums {
+    width: 300px;
+    height: 300px;
+    font-family: sans-serif;
+    text-align: center;
+    line-height: 300px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(84, 6, 135);
+    overflow: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 25px 0 black;
+}
+
+.h1-all-albums-title {
+    font-family: sans-serif;
+    color: black;
+    font-size: 50px;
+    margin-left: 38px;
+}

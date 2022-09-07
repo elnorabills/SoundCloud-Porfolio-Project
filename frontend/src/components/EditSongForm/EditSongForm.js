@@ -12,7 +12,7 @@ function EditSongForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [stopBtn, setStopBtn] = useState(false);
-  const [errors, setErrors] = useState([]);
+  const [valErrors, setValErrors] = useState([]);
   const { songId } = useParams();
 
 
@@ -26,9 +26,15 @@ function EditSongForm() {
       description
     };
 
-    let editedSong = await dispatch(editSongThunk(songId, payload));
+    let editedSong = await dispatch(editSongThunk(songId, payload))
+    .catch(async (response) => {
+        const err = await response.json();
+        if (err) {
+            setValErrors(err.errors);
+        }
+    })
     if (editedSong) {
-      history.push("/me/songs");
+      history.push("/me/songs"); //could be `/songs/${songId}`
     }
     setStopBtn(false);
   };
@@ -40,9 +46,12 @@ function EditSongForm() {
           <h1 className="h1-edit-song-title">Edit Song</h1>
         </div>
         <ul className="edit-song-errors">
-          {errors.map((error, idx) => (
+            {Object.values(valErrors).map(err => (
+                <li key={err}>{err}</li>
+            ))}
+          {/* {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
-          ))}
+          ))} */}
         </ul>
         <div className="flex-input-es">
           <label>
