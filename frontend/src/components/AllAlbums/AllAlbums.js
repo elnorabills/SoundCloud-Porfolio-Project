@@ -13,10 +13,10 @@ function AllAlbums() {
 
   return (
     <div className="all-albums-large-container">
-      <h1 className="h1-all-albums-title">All Albums</h1>
+      <h1 className="h1-all-albums-title">Albums</h1>
       <div className="all-albums-container">
         {Object.keys(albums).map((albumId) => {
-          return <div className="all-albums" key={albumId}>
+          return <div className="all-albums" id={albumId}>
             {albums[albumId].title}
             </div>;
         })}

@@ -13,11 +13,11 @@ function AllSongs() {
 
     return (
       <div className="all-songs-large-container">
-        <h1 className="h1-all-songs-title">All Songs</h1>
+        <h1 className="h1-all-songs-title">Songs</h1>
         <div className="all-songs-container">
           {Object.keys(songs).map((songId) => {
             return (
-              <div className="all-songs" key={songId}>
+              <div className="all-songs" id={songId}>
                 {songs[songId].title}
               </div>
             );

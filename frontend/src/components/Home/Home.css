@@ -4,12 +4,12 @@
     height: 700px;
     align-items: center;
     height: 125vh;
-    background-image: url('../../images/simpleSky.jpg');
+    background-image: url('../../images/el-soundcloud.jpg');
     background-size: cover;
 }
 
-.home-title {
+/* .home-title {
     font-family: sans-serif;
     color: white;
     font-size: 50px;
-}
+} */

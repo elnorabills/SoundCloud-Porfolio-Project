@@ -7,7 +7,43 @@
     gap: 35px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+}
+
+.all-albums[id='1'] {
+    background-image: url("../../images/AlbumCovers/moons.jpg");
+    background-size: cover;
+    font-size: 35px;
+}
+
+.all-albums[id='2'] {
+    background-image: url("../../images/AlbumCovers/handMoon.png");
+    background-size: cover;
+    font-size: 35px;
+}
+
+.all-albums[id='3'] {
+    background-image: url("../../images/AlbumCovers/train.jpg");
+    background-size: cover;
+    font-size: 35px;
+}
+
+.all-albums[id='4'] {
+    background-image: url("../../images/AlbumCovers/redCircles.jpg");
+    background-size: cover;
+    font-size: 25px;
+}
+
+.all-albums[id='5'] {
+    background-image: url("../../images/AlbumCovers/blueCircle.jpg");
+    background-size: cover;
+    font-size: 35px;
+}
+
+.all-albums[id='6'] {
+    background-image: url("../../images/AlbumCovers/redTruck.jpg");
+    background-size: cover;
+    font-size: 35px;
 }
 
 .all-albums {
@@ -16,18 +52,17 @@
     font-family: sans-serif;
     text-align: center;
     line-height: 300px;
-    font-size: 20px;
     font-weight: bold;
     color: white;
-    background-color: rgb(84, 6, 135);
-    overflow: auto;
-    border-radius: 10px;
+    /* overflow: auto; */
     box-shadow: 0 0 25px 0 black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .h1-all-albums-title {
     font-family: sans-serif;
     color: black;
-    font-size: 50px;
-    margin-left: 38px;
+    font-size: 55px;
+    margin-left: 70px;
+    font-weight: 400;
 }
