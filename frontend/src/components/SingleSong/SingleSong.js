@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { deleteSongThunk } from "../../store/songs";
+import { meSongsThunk } from "../../store/me";
 import EditSongButtonComp from "../EditSongForm/EditSongButton";
 
 function SingleSong () {
@@ -19,11 +20,13 @@ function SingleSong () {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      dispatch(deleteSongThunk(songId));
+      dispatch(deleteSongThunk(songId)).then(() => dispatch(meSongsThunk()));
       history.push("/me/songs");
     };
 
     if (!sessionUser) return <Redirect to="/" />;
+
+    if (!song) return <Redirect to="/me/songs" />;
 
     let sessionUserActions;
 
@@ -40,11 +43,20 @@ function SingleSong () {
       );
     }
 
+    let existingSong;
+    if (song) {
+      existingSong = (
+        <div>
+          <h1>{song.title}</h1>
+          <h2>{song.description}</h2>
+          <div className="session-user-actions">{sessionUserActions}</div>
+        </div>
+      );
+    }
+
     return (
       <div>
-        <h1>{song.title}</h1>
-        <h2>{song.description}</h2>
-        <div className="session-user-actions">{sessionUserActions}</div>
+        {existingSong}
       </div>
     );
 }

@@ -25,29 +25,31 @@ function UserAlbums() {
     );
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-      }}
-    >
-      {Object.keys(meAlbums).map((albumId) => {
-        return (
-          <Link key={albumId} to={`/albums/${albumId}`}>
-            <div
-              style={{
-                width: "200px",
-                height: "200px",
-                border: "1px solid black",
-              }}
-            >
-              {meAlbums[albumId].title}
-            </div>
-          </Link>
-        );
-      })}
-      <div className="session-user-actions">{sessionUserActions}</div>
+    <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+        }}
+      >
+        {Object.keys(meAlbums).map((albumId) => {
+          return (
+            <Link key={albumId} to={`/albums/${albumId}`}>
+              <div
+                style={{
+                  width: "200px",
+                  height: "200px",
+                  border: "1px solid black",
+                }}
+              >
+                {meAlbums[albumId].title}
+              </div>
+            </Link>
+          );
+        })}
+        <div className="session-user-actions">{sessionUserActions}</div>
+      </div>
     </div>
   );
 }

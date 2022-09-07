@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Redirect } from "react-router-dom";
 import { deleteAlbumThunk } from '../../store/albums';
+import { meAlbumsThunk } from "../../store/me";
 import CreateSongButtonComp from '../CreateSongForm/CreateSongButton';
 
 function SingleAlbum () {
@@ -19,11 +20,13 @@ function SingleAlbum () {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      dispatch(deleteAlbumThunk(albumId));
+      dispatch(deleteAlbumThunk(albumId)).then(() => dispatch(meAlbumsThunk()));
       history.push("/me/albums")
     };
 
     if (!sessionUser) return <Redirect to="/" />;
+
+    if (!album) return <Redirect to="/me/albums" />;
 
     let sessionUserActions;
 
