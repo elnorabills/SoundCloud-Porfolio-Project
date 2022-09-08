@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import CreateAlbumButtonComp from "../CreateAlbumForm/CreateAlbumButton";
+import "./UserAlbums.css";
 
 function UserAlbums() {
   const dispatch = useDispatch();
@@ -25,30 +26,19 @@ function UserAlbums() {
     );
 
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-        }}
-      >
+    <div className="all-user-albums-large-container">
+      <h1 className="h1-all-user-albums-title">My Albums</h1>
+      <div className="session-user-actions">{sessionUserActions}</div>
+      <div className="all-user-albums-container">
         {Object.keys(meAlbums).map((albumId) => {
           return (
-            <Link key={albumId} to={`/albums/${albumId}`}>
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  border: "1px solid black",
-                }}
-              >
+            <Link className="nav-link" key={albumId} to={`/albums/${albumId}`}>
+              <div className="all-user-albums" id={albumId}>
                 {meAlbums[albumId].title}
               </div>
             </Link>
           );
         })}
-        <div className="session-user-actions">{sessionUserActions}</div>
       </div>
     </div>
   );

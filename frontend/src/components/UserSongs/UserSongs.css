@@ -1,5 +1,4 @@
-
-.all-songs-container {
+.all-user-songs-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -9,96 +8,78 @@
     margin-bottom: 50px;
 }
 
-.all-songs[id='1'] {
+.all-user-songs[id='1'] {
     background-image: url("../../images/SongCovers/song1.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='2'] {
+.all-user-songs[id='2'] {
     background-image: url("../../images/SongCovers/song2.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='3'] {
+.all-user-songs[id='3'] {
     background-image: url("../../images/SongCovers/song3.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='4'] {
+.all-user-songs[id='4'] {
     background-image: url("../../images/SongCovers/song4.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='5'] {
+.all-user-songs[id='5'] {
     background-image: url("../../images/SongCovers/song5.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='6'] {
-    background-image: url("../../images/SongCovers/song6.jpg");
-    background-size: cover;
-    font-size: 25px;
-}
-
-.all-songs[id='7'] {
-    background-image: url("../../images/SongCovers/song7.jpg");
-    background-size: cover;
-    font-size: 25px;
-}
-
-.all-songs[id='8'] {
-    background-image: url("../../images/SongCovers/song8.jpg");
-    background-size: cover;
-    font-size: 25px;
-}
-
-.all-songs[id='9'] {
+.all-user-songs[id='9'] {
     background-image: url("../../images/SongCovers/song9.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='10'] {
+.all-user-songs[id='10'] {
     background-image: url("../../images/SongCovers/song10.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='11'] {
+.all-user-songs[id='11'] {
     background-image: url("../../images/SongCovers/song11.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='12'] {
+.all-user-songs[id='12'] {
     background-image: url("../../images/SongCovers/song12.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='13'] {
+.all-user-songs[id='13'] {
     background-image: url("../../images/SongCovers/song13.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs[id='14'] {
+.all-user-songs[id='14'] {
     background-image: url("../../images/SongCovers/song14.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-songs {
-    width: 200px;
-    height: 200px;
+.all-user-songs {
+    width: 250px;
+    height: 250px;
     font-family: sans-serif;
     text-align: center;
-    line-height: 200px;
+    line-height: 250px;
     font-size: 25px;
     font-weight: bold;
     color: white;
@@ -108,10 +89,14 @@
     background-size: cover;
 }
 
-.h1-all-songs-title {
+.h1-all-user-songs-title {
     font-family: sans-serif;
     color: black;
     font-size: 55px;
     margin-left: 38px;
     font-weight: 400;
+}
+
+.nav-link {
+    text-decoration: none;
 }

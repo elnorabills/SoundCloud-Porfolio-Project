@@ -13,6 +13,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import HomePage from "./components/Home/Home";
 import UserHomePage from "./components/UserPage/UserPage";
 import AllSongs from "./components/AllSongs/allSongs";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ function App() {
               <UserAlbums />
             </Route>
             <Route>
-              <h1>404: Not Found</h1>
+              <ErrorPage />
             </Route>
           </Switch>
         )}

@@ -1,57 +1,55 @@
-
-
-.all-albums-container {
+.all-user-albums-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 35px;
+    gap: 25px;
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
 }
 
-.all-albums[id='1'] {
+.all-user-albums[id='1'] {
     background-image: url("../../images/AlbumCovers/moons.jpg");
     background-size: cover;
     font-size: 35px;
 }
 
-.all-albums[id='2'] {
+.all-user-albums[id='2'] {
     background-image: url("../../images/AlbumCovers/handMoon.png");
     background-size: cover;
     font-size: 35px;
 }
 
-.all-albums[id='3'] {
+.all-user-albums[id='3'] {
     background-image: url("../../images/AlbumCovers/train.jpg");
     background-size: cover;
     font-size: 35px;
 }
 
-.all-albums[id='4'] {
+.all-user-albums[id='4'] {
     background-image: url("../../images/AlbumCovers/redCircles.jpg");
     background-size: cover;
     font-size: 25px;
 }
 
-.all-albums[id='5'] {
+.all-user-albums[id='5'] {
     background-image: url("../../images/AlbumCovers/blueCircle.jpg");
     background-size: cover;
     font-size: 35px;
 }
 
-.all-albums[id='6'] {
+.all-user-albums[id='6'] {
     background-image: url("../../images/AlbumCovers/redTruck.jpg");
     background-size: cover;
     font-size: 35px;
 }
 
-.all-albums {
-    width: 300px;
-    height: 300px;
+.all-user-albums {
+    width: 350px;
+    height: 350px;
     font-family: sans-serif;
     text-align: center;
-    line-height: 300px;
+    line-height: 350px;
     font-size: 35px;
     font-weight: bold;
     color: white;
@@ -62,10 +60,15 @@
     background-size: cover;
 }
 
-.h1-all-albums-title {
+.h1-all-user-albums-title {
     font-family: sans-serif;
     color: black;
     font-size: 55px;
-    margin-left: 70px;
+    margin-left: 38px;
+    margin-bottom: 25px;
     font-weight: 400;
+}
+
+.nav-link {
+    text-decoration: none;
 }
