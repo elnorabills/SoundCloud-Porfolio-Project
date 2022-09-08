@@ -49,7 +49,7 @@ module.exports = {
          {
            title: "Better",
            description: "Not sure if I like it or not",
-           userId: 4,
+           userId: 5,
            albumId: 5,
            url: "owiejfowijefo",
            imageUrl: "image url",
@@ -57,7 +57,7 @@ module.exports = {
          {
            title: "Somebody",
            description: "Very fun but very basic",
-           userId: 4,
+           userId: 5,
            albumId: 5,
            url: "owiejfowijefo",
            imageUrl: "image url",
@@ -105,16 +105,16 @@ module.exports = {
          {
            title: "Grapevine",
            description: "Sounds like MGK but isn't",
-           userId: 4,
-           albumId: 5,
+           userId: 5,
+           albumId: 6,
            url: "owiejfowijefo",
            imageUrl: "image url",
          },
          {
            title: "Drunk",
            description: "Song about getting drunk",
-           userId: 4,
-           albumId: 5,
+           userId: 5,
+           albumId: 6,
            url: "owiejfowijefo",
            imageUrl: "image url",
          },
