@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
-import AllSongs from "./components/AllSongs/AllSongs";
 import SingleSong from "./components/SingleSong/SingleSong";
 import AllAlbums from "./components/AllAlbums/AllAlbums";
 import SingleAlbum from "./components/SingleAlbum/SingleAlbum";
@@ -13,6 +12,7 @@ import UserAlbums from "./components/UserAlbums/UserAlbums";
 import LoginFormPage from "./components/LoginFormPage";
 import HomePage from "./components/Home/Home";
 import UserHomePage from "./components/UserPage/UserPage";
+import AllSongs from "./components/AllSongs/AllSongs";
 
 function App() {
   const dispatch = useDispatch();
