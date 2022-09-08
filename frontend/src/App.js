@@ -12,7 +12,7 @@ import UserAlbums from "./components/UserAlbums/UserAlbums";
 import LoginFormPage from "./components/LoginFormPage";
 import HomePage from "./components/Home/Home";
 import UserHomePage from "./components/UserPage/UserPage";
-import AllSongs from "./components/AllSongs/AllSongs"
+import AllSongs from "./components/AllSongs/allSongs";
 
 function App() {
   const dispatch = useDispatch();
