@@ -98,6 +98,7 @@
     height: 200px;
     font-family: sans-serif;
     text-align: center;
+    overflow: auto;
     line-height: 200px;
     font-size: 25px;
     font-weight: bold;
