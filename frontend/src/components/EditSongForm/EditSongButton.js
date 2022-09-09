@@ -7,15 +7,17 @@ const EditSongButtonComp = () => {
     const [editSong, setEditSong] = useState(false);
 
     return (
-        <div>
-            <button onClick={() => setEditSong(true)}>Edit Song</button>
-            {editSong && (
-                <Modal onClose={() => setEditSong(false)}>
-                    <EditSongForm setEditSong={setEditSong} />
-                </Modal>
-            )}
-        </div>
-    )
+      <div>
+        <button className="edit-song-button" onClick={() => setEditSong(true)}>
+          Edit Song
+        </button>
+        {editSong && (
+          <Modal onClose={() => setEditSong(false)}>
+            <EditSongForm setEditSong={setEditSong} />
+          </Modal>
+        )}
+      </div>
+    );
 }
 
 export default EditSongButtonComp;

@@ -4,7 +4,7 @@ header img {
 }
 .nav-bar-comp {
     font-family: sans-serif;
-    padding: 30px;
+    padding: 33px;
     margin-top: 45px;
 }
 
@@ -31,4 +31,5 @@ header li {
 header li .nav-link {
     color: black;
     text-decoration: none;
+    font-weight: 600;
 }

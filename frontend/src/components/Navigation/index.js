@@ -49,6 +49,22 @@ function Navigation({ isLoaded }) {
                 Albums
               </NavLink>
             </li>
+            <li>
+              <a
+                className="nav-link"
+                href="https://github.com/elnorabills/SoundCloud-Porfolio-Project"
+              >
+                Github
+              </a>
+            </li>
+            <li>
+              <a
+                className="nav-link"
+                href="https://github.com/elnorabills/SoundCloud-Porfolio-Project"
+              >
+                LinkedIn
+              </a>
+            </li>
             {isLoaded && sessionLinks}
           </ul>
         </nav>

@@ -32,13 +32,13 @@ function SingleSong () {
 
     if (sessionUser.id === song.userId) {
       sessionUserActions = (
-        <div className="delete-song-button-container">
-          <button className="delete-song-button" onClick={handleSubmit}>
-            Delete
-          </button>
-          <div className="edit-song-button">
-            <EditSongButtonComp />
+        <div className="ed-song-button-container">
+          <div>
+            <button className="delete-song-button" onClick={handleSubmit}>
+              Delete
+            </button>
           </div>
+            <EditSongButtonComp />
         </div>
       );
     }
@@ -46,10 +46,11 @@ function SingleSong () {
     let existingSong;
     if (song) {
       existingSong = (
-        <div>
-          <h1>{song.title}</h1>
-          <h2>{song.description}</h2>
+        <div className="single-song-container">
+          <h1 className="h1-single-song-title">{song.title}</h1>
+          <h2 className="h2-single-song-description">{song.description}</h2>
           <div className="session-user-actions">{sessionUserActions}</div>
+          <div className="all-user-songs"></div>
         </div>
       );
     }

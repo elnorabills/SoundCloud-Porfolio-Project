@@ -39,7 +39,6 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>Email: {user.email}</li>
           <li>
             <NavLink className="nav-link" to="/me/songs">
               My Songs

@@ -1,23 +1,23 @@
-.edit-song-form-container {
+.edit-album-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.h1-edit-song-title {
+.h1-edit-album-form-title {
     font-family: sans-serif;
     color: white;
     font-size: 50px;
 }
 
-.edit-song-form {
+.edit-album-form {
     padding: 20px;
     width: 400px;
     background-color: rgb(49, 46, 46);
     box-shadow: 0 0 25px 0 black;
 }
 
-.flex-input-es {
+.flex-input-ea {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
@@ -47,7 +47,7 @@ input[type="text"], [type="password"] {
       color: black;
   }
 
-  .edit-song-errors {
+  .edit-album-errors {
     font-family: sans-serif;
     color: white;
   }

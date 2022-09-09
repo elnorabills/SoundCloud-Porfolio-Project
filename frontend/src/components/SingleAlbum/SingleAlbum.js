@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import { deleteAlbumThunk } from '../../store/albums';
 import { meAlbumsThunk } from "../../store/me";
 import CreateSongButtonComp from '../CreateSongForm/CreateSongButton';
+import EditAlbumButtonComp from '../EditAlbumForm/EditAlbumButton';
 
 function SingleAlbum () {
     const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function SingleAlbum () {
           <div className="create-song-button-comp">
             <CreateSongButtonComp />
           </div>
+          <div>
+            <EditAlbumButtonComp />
+          </div>
         </div>
       );
     }
@@ -47,7 +51,6 @@ function SingleAlbum () {
       <div>
         <h1>{album.title}</h1>
         <h2>{album.description}</h2>
-        <button>Edit</button>
         <div className="session-user-actions">{sessionUserActions}</div>
         <div
           style={{
