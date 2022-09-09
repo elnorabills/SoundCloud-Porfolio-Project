@@ -1,5 +1,6 @@
 .create-song-button {
     background-color: black;
+    font-family: Helvetica;
     color: #fff;
     border:none;
     border-radius:10px;
@@ -7,7 +8,7 @@
     min-height: 50px;
     min-width: 100px;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 20px;
 }
 

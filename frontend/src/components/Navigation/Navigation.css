@@ -5,6 +5,7 @@ header img {
 .nav-bar-comp {
     font-family: sans-serif;
     padding: 33px;
+    padding-bottom: 0px;
     margin-top: 45px;
 }
 

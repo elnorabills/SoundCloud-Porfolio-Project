@@ -4,6 +4,33 @@
     height: 700px;
     align-items: center;
     height: 125vh;
-    background-image: url('../../images/login-home.jpg');
+    background-image: url('../../images/logout-home.jpg');
     background-size: cover;
+}
+
+.names-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 600px;
+    margin-bottom: 400px;
+    margin-top: 20px;
+}
+
+.h1-user-home-page-title {
+    font-family: Helvetica;
+    font-size: 75px;
+    font-style: oblique;
+    color: white;
+    margin-top: 10px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.h2-user-home-page-name {
+    font-family: Helvetica;
+    font-size: 70px;
+    font-style: oblique;
+    color: white;
+    font-weight: 400;
+    margin-top: 6px;
 }
