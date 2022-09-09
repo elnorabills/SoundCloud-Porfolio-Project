@@ -59,21 +59,6 @@ function SingleAlbum () {
             gap: "10px",
           }}
         >
-          {/* {Object.keys(album).map((songId) => {
-            return (
-             // <Link key={songId} to={`/songs/${songId}`}>
-                <div key={songId}
-                  style={{
-                    width: "200px",
-                    height: "200px",
-                    border: "1px solid black",
-                  }}
-                >
-                  {album.Songs[songId]}
-                </div>
-             // </Link>
-            );
-          })} */}
         </div>
       </div>
     );

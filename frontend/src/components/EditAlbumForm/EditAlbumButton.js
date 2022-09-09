@@ -8,7 +8,7 @@ const EditAlbumButtonComp = () => {
 
   return (
     <div>
-      <button onClick={() => setEditAlbum(true)}>Edit Album</button>
+      <button className="edit-album-button-comp" onClick={() => setEditAlbum(true)}>Edit Album</button>
       {editAlbum && (
         <Modal onClose={() => setEditAlbum(false)}>
           <EditAlbumForm setEditAlbum={setEditAlbum} />
