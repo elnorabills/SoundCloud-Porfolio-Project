@@ -8,7 +8,7 @@ const CreateSongButtonComp = () => {
 
   return (
     <div>
-      <button onClick={() => setCreateSong(true)}>Add Song</button>
+      <button className="create-song-button" onClick={() => setCreateSong(true)}>Add Song</button>
       {createSong && (
         <Modal onClose={() => setCreateSong(false)}>
           <CreateSongForm setCreateSong={setCreateSong} />

@@ -60,7 +60,7 @@ function Navigation({ isLoaded }) {
             <li>
               <a
                 className="nav-link"
-                href="https://github.com/elnorabills/SoundCloud-Porfolio-Project"
+                href="https://www.linkedin.com/in/eleanor-billerbeck-9165021b0/"
               >
                 LinkedIn
               </a>

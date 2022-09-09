@@ -96,7 +96,7 @@ function CreateSongForm () {
              </label>
            </div>
            <div>
-             <button className="create-song-button" type="submit">
+             <button className="add-song-button" type="submit">
                Add Song
              </button>
            </div>

@@ -7,6 +7,7 @@ import { deleteAlbumThunk } from '../../store/albums';
 import { meAlbumsThunk } from "../../store/me";
 import CreateSongButtonComp from '../CreateSongForm/CreateSongButton';
 import EditAlbumButtonComp from '../EditAlbumForm/EditAlbumButton';
+import "./SingleAlbum.css";
 
 function SingleAlbum () {
     const dispatch = useDispatch();
@@ -27,39 +28,42 @@ function SingleAlbum () {
 
     if (!sessionUser) return <Redirect to="/" />;
 
-    if (!album) return <Redirect to="/me/albums" />;
-
     let sessionUserActions;
 
     if (sessionUser.id === album.userId) {
       sessionUserActions = (
-        <div className="delete-album-button-container">
-          <button className="delete-album-button" onClick={handleSubmit}>
-            Delete
-          </button>
-          <div className="create-song-button-comp">
+        <div className="edc-album-button-container">
+          <div className="edc-delete-album-button">
+            <button className="delete-album-button" onClick={handleSubmit}>
+              Delete
+            </button>
+          </div>
             <CreateSongButtonComp />
-          </div>
-          <div>
+
             <EditAlbumButtonComp />
-          </div>
         </div>
       );
     }
 
+    let existingAlbum;
+    if (album) {
+      existingAlbum = (
+        <div className="single-album-container">
+          <h1 className="h1-single-album-title">{album.title}</h1>
+          <h2 className="h2-single-album-description">{album.description}</h2>
+          <div className="small-single-album-container">
+            <div className="all-user-albums" id={album.id}>
+              {album.title}
+            </div>
+          </div>
+          <div className="session-user-actions">{sessionUserActions}</div>
+        </div>
+      )
+    }
+
     return (
       <div>
-        <h1>{album.title}</h1>
-        <h2>{album.description}</h2>
-        <div className="session-user-actions">{sessionUserActions}</div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-        >
-        </div>
+        {existingAlbum}
       </div>
     );
 }

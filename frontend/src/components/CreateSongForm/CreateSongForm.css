@@ -31,7 +31,7 @@ input[type="text"], [type="password"] {
     border-radius: 10px;
 }
 
-.create-song-button {
+.add-song-button {
     width: 100%;
     font-size: 20px;
     padding: 10px;
@@ -42,10 +42,10 @@ input[type="text"], [type="password"] {
     margin: 20px 0px;
 }
 
- .create-song-button:hover {
-      background-color: white;
-      transition: 0.7s;
-      color: black;
+ .add-song-button:hover {
+    background-color: white;
+    transition: 0.7s;
+    color: black;
   }
 
   .create-song-errors {
