@@ -18,7 +18,7 @@ const getMeAlbums = (albums) => {
 };
 
 export const meSongsThunk = () => async (dispatch) => {
-  let res = await csrfFetch("/me/songs");
+  let res = await csrfFetch("/api/me/songs");
 
   if (res.ok) {
     const data = await res.json();
@@ -32,7 +32,7 @@ export const meSongsThunk = () => async (dispatch) => {
 };
 
 export const meAlbumsThunk = () => async (dispatch) => {
-  let res = await csrfFetch("/me/albums");
+  let res = await csrfFetch("/api/me/albums");
 
   if (res.ok) {
     const data = await res.json();

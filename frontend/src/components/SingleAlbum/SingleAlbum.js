@@ -7,6 +7,7 @@ import { deleteAlbumThunk } from '../../store/albums';
 import { meAlbumsThunk } from "../../store/me";
 import CreateSongButtonComp from '../CreateSongForm/CreateSongButton';
 import EditAlbumButtonComp from '../EditAlbumForm/EditAlbumButton';
+import { Link } from "react-router-dom";
 import "./SingleAlbum.css";
 
 function SingleAlbum () {
@@ -15,6 +16,7 @@ function SingleAlbum () {
     const { albumId } = useParams();
     const album = useSelector(state => state.albums);
     const sessionUser = useSelector((state) => state.session.user);
+    const { Songs } = album;
 
     useEffect(() => {
         dispatch(oneAlbumThunk(albumId))
@@ -45,7 +47,7 @@ function SingleAlbum () {
       );
     }
 
-    let existingAlbum;
+   let existingAlbum;
     if (album) {
       existingAlbum = (
         <div className="single-album-container">
@@ -57,8 +59,23 @@ function SingleAlbum () {
             </div>
           </div>
           <div className="session-user-actions">{sessionUserActions}</div>
+          <h3 className='h3-album-songs'>Album Songs</h3>
+          <div className="all-album-songs-container">
+            <div className="album-songs-list">
+              {Songs &&
+                Songs.map((song) => {
+                  return (
+                    <Link className="nav-link" to={`/songs/${song.id}`}>
+                      <div className="all-user-songs" id={song.id}>
+                        {song.title}
+                      </div>
+                    </Link>
+                  );
+                })}
+            </div>
+          </div>
         </div>
-      )
+      );
     }
 
     return (

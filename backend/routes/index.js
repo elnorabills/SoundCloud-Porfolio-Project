@@ -10,12 +10,12 @@ const playlistRouter = require("./playlists");
 const songRouter = require("./songs");
 
 router.use("/api", apiRouter);
-router.use("/albums", albumRouter);
-router.use("/artists", artistRouter);
-router.use("/comments", commentRouter);
-router.use("/me", meRouter);
-router.use("/playlists", playlistRouter);
-router.use("/songs", songRouter);
+router.use("/api/albums", albumRouter);
+router.use("/api/artists", artistRouter);
+router.use("/api/comments", commentRouter);
+router.use("/api/me", meRouter);
+router.use("/api/playlists", playlistRouter);
+router.use("/api/songs", songRouter);
 
 // Static routes
 // Serve React build files in production

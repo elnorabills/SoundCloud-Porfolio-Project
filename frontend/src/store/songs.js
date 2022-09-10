@@ -42,7 +42,7 @@ const createSongAction = (song) => {
 };
 
 export const allSongsThunk = () => async dispatch => {
-    let allSongs = await csrfFetch("/songs");
+    let allSongs = await csrfFetch("/api/songs");
 
     if (allSongs.ok) {
         const data = await allSongs.json()
@@ -56,7 +56,7 @@ export const allSongsThunk = () => async dispatch => {
 }
 
 export const oneSongThunk = (songId) => async (dispatch) => {
-  const res = await csrfFetch(`/songs/${songId}`);
+  const res = await csrfFetch(`/api/songs/${songId}`);
 
   if (res.ok) {
     const song = await res.json();
@@ -65,7 +65,7 @@ export const oneSongThunk = (songId) => async (dispatch) => {
 };
 
 export const createSongThunk = (payload, albumId) => async (dispatch) => {
-  const response = await csrfFetch(`/albums/${albumId}`, {
+  const response = await csrfFetch(`/api/albums/${albumId}`, {
     method: "POST",
     body: JSON.stringify(payload),
   });
@@ -77,7 +77,7 @@ export const createSongThunk = (payload, albumId) => async (dispatch) => {
 };
 
 export const editSongThunk = (songId, payload) => async (dispatch) => {
-  const response = await csrfFetch(`/songs/${songId}`, {
+  const response = await csrfFetch(`/api/songs/${songId}`, {
     method: "PUT",
     body: JSON.stringify(payload),
   });
@@ -89,7 +89,7 @@ export const editSongThunk = (songId, payload) => async (dispatch) => {
 };
 
 export const deleteSongThunk = (songId) => async (dispatch) => {
-  const response = await csrfFetch(`/songs/${songId}`, {
+  const response = await csrfFetch(`/api/songs/${songId}`, {
     method: "DELETE"
   });
   if (response.ok) {

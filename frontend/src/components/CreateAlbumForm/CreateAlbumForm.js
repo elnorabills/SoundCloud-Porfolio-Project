@@ -29,6 +29,7 @@ function CreateAlbumForm() {
         }
       }
     );
+
     if (createdAlbum) {
       history.push(`/albums/${createdAlbum.id}`);
     }

@@ -34,7 +34,7 @@ const deleteAlbumAction = (albumId) => {
 };
 
 export const allAlbumsThunk = () => async (dispatch) => {
-  let res = await csrfFetch("/albums");
+  let res = await csrfFetch("/api/albums");
 
   if (res.ok) {
     const data = await res.json();
@@ -49,7 +49,7 @@ export const allAlbumsThunk = () => async (dispatch) => {
 };
 
 export const oneAlbumThunk = (albumId) => async (dispatch) => {
-  let res = await csrfFetch(`/albums/${albumId}`);
+  let res = await csrfFetch(`/api/albums/${albumId}`);
 
   if (res.ok) {
     const data = await res.json();
@@ -58,7 +58,7 @@ export const oneAlbumThunk = (albumId) => async (dispatch) => {
 };
 
 export const createAlbumThunk = (payload) => async (dispatch) => {
-  const response = await csrfFetch("/albums", {
+  const response = await csrfFetch("/api/albums", {
     method: "POST",
     body: JSON.stringify(payload),
   });
@@ -70,7 +70,7 @@ export const createAlbumThunk = (payload) => async (dispatch) => {
 };
 
 export const editAlbumThunk = (albumId, payload) => async (dispatch) => {
-  const response = await csrfFetch(`/albums/${albumId}`, {
+  const response = await csrfFetch(`/api/albums/${albumId}`, {
     method: "PUT",
     body: JSON.stringify(payload),
   });
@@ -82,7 +82,7 @@ export const editAlbumThunk = (albumId, payload) => async (dispatch) => {
 };
 
 export const deleteAlbumThunk = (albumId) => async (dispatch) => {
-  const response = await csrfFetch(`/albums/${albumId}`, {
+  const response = await csrfFetch(`/api/albums/${albumId}`, {
     method: "DELETE",
   });
   if (response.ok) {
