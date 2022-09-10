@@ -48,16 +48,16 @@ Make a new terminal separate from the one your backend server is running on and 
 This application has two features implemented, Albums and Songs. For each of these features, the user is able to perform all necessary CRUD (Create, Read, Update, Delete) operations.
 
 Albums:
-Create: The user can make a new album.
-Read: The user can access a list of all albums, the albums they created, and the details of each individual album.
-Update: The user can edit the albums they have created.
-Delete: The user can delete any album they have created.
+* Create: The user can make a new album.
+* Read: The user can access a list of all albums, the albums they created, and the details of each individual album.
+* Update: The user can edit the albums they have created.
+* Delete: The user can delete any album they have created.
 
 Songs:
-Create: The user can make a new song within a specific album.
-Read: The user can access a list of all songs, the songs they created, and the details of each individual song.
-Update: The user can edit the songs they have created.
-Delete: The user can delete any song they have created.
+* Create: The user can make a new song within a specific album.
+* Read: The user can access a list of all songs, the songs they created, and the details of each individual song.
+* Update: The user can edit the songs they have created.
+* Delete: The user can delete any song they have created.
 
 Future Features include:
 * CRUD operations for song comments
