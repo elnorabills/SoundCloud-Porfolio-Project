@@ -13,6 +13,11 @@ function HomePage () {
           Upload your first track and begin your journey. SoundCloud gives you
           space to create, find your fans, and connect with other artists.
         </span>
+        <span className="title-cloud-link">
+          <NavLink className="nav-link-title-cloud" to="/sign-up">
+            Sign Up
+          </NavLink>
+        </span>
       </div>
     </div>
   );
