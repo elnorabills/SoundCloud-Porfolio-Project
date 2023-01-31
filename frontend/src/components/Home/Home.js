@@ -5,7 +5,7 @@ function HomePage () {
   return (
     <div className="home-page-container">
       <div className="title-cloud">
-        <i className="fa-solid fa-cloud"></i>
+        <i className="fa-solid fa-cloud" id="big-cloud"></i>
         <span className="title-cloud-text">
           What's next in music is first on SoundCloud
         </span>
@@ -18,6 +18,10 @@ function HomePage () {
             Sign Up
           </NavLink>
         </span>
+      </div>
+      <div className="bottom-clouds">
+        <i className="fa-solid fa-cloud" id="b-one"></i>
+        <i className="fa-solid fa-cloud" id="b-one"></i>
       </div>
     </div>
   );
