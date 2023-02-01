@@ -37,7 +37,7 @@
 }
 
 .title-cloud {
-    padding-top: 40px;
+    padding-top: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,8 +49,7 @@
     font-size: 32px;
     padding-top: 190px;
     position: absolute;
-    padding-right: 480px;
-    padding-left: 475px;
+    width: 380px;
     text-align: center;
 }
 
@@ -62,8 +61,7 @@
     text-align: center;
     padding-top: 280px;
     position: absolute;
-    padding-right: 400px;
-    padding-left: 390px;
+    width: 500px;
 }
 
 .title-cloud-link {
@@ -86,8 +84,8 @@
 }
 
 .left-group {
-    padding-top: 40px;
-    padding-left: 25px;
+    padding-top: 50px;
+    padding-left: 50px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -95,7 +93,7 @@
 
 .right-group {
     padding-top: 120px;
-    padding-right: 25px;
+    padding-right: 70px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -108,7 +106,7 @@
 
 #b-two {
     color: white;
-    font-size: 230px;
+    font-size: 250px;
 }
 
 #b-note-one {
@@ -121,6 +119,6 @@
     color: blueviolet;
     font-size: 90px;
     position: absolute;
-    margin-top: 172px;
+    margin-top: 188px;
     margin-right: 47px;
 }
