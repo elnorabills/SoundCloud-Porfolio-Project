@@ -5,31 +5,33 @@ function UserHomePage () {
   const sessionUser = useSelector((state) => state.session.user);
 
       return (
-        <div className="home-page-container">
-          <div className="left-group">
-            <i className="fa-solid fa-music" id="b-note-one"></i>
-            <i className="fa-solid fa-cloud" id="b-one"></i>
+        <div className="home-page-container-up">
+          <div className="left-group-up">
+            <i className="fa-solid fa-music" id="b-note-one-up"></i>
+            <i className="fa-solid fa-cloud" id="b-one-up"></i>
           </div>
-          <div className="title-cloud">
-            <i className="fa-solid fa-cloud" id="big-cloud"></i>
-            <span className="title-note-container">
-              <i className="fa-solid fa-music" id="title-note"></i>
+          <div className="title-cloud-up">
+            <i className="fa-solid fa-cloud" id="big-cloud-up-aqua"></i>
+            <i className="fa-solid fa-cloud" id="big-cloud-up-blueviolet"></i>
+            <i className="fa-solid fa-cloud" id="big-cloud-up"></i>
+            <span className="title-note-container-up">
+              <i className="fa-solid fa-music" id="title-note-up"></i>
             </span>
-            <span className="title-cloud-text">
-              Welcome back, {sessionUser.firstName}
+            <span className="title-cloud-text-up">
+              Welcome back {sessionUser.firstName}!
             </span>
-            <span className="title-cloud-para">
+            <span className="title-cloud-para-up">
               Be an artist. Upload tracks and share them with your social
               networks. Browse through songs and albums, distribute music, demos
               and beats.
             </span>
-            <span className="title-note-container-bottom">
-              <i className="fa-solid fa-music" id="title-note-two"></i>
+            <span className="title-note-container-bottom-up">
+              <i className="fa-solid fa-music" id="title-note-two-up"></i>
             </span>
           </div>
-          <div className="right-group">
-            <i className="fa-solid fa-music" id="b-note-two"></i>
-            <i className="fa-solid fa-cloud" id="b-two"></i>
+          <div className="right-group-up">
+            <i className="fa-solid fa-music" id="b-note-two-up"></i>
+            <i className="fa-solid fa-cloud" id="b-two-up"></i>
           </div>
         </div>
       );
