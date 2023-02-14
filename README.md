@@ -19,7 +19,7 @@ Click this link to take you to the github repository: https://github.com/elnorab
 You will first want to clone the repository by clicking the green button that says "Code". Copy and paste the link in your terminal and cd into the folder titled "SoundCloud-Porfolio-Project". Once in this folder type the command "code ." in your terminal and the application should open up in a vs code document.
 
 .env setup:
-Create a .evn file in the root of your backend folder (/backend/.env). This file should contain the port, db_file, jwt_secret, and jwt_expires_in.
+Create a .env file in the root of your backend folder (/backend/.env). This file should contain the port, db_file, jwt_secret, and jwt_expires_in.
 
 This is how your .env file should look:
 
